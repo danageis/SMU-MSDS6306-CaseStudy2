@@ -13,9 +13,9 @@ Tiger Team, Case Study 2: DDS Analytics and
   / | |) || Y.`.`\.' -. L'-J|||- -
  /. ' |`.J|J\  ))J'/"-. \\`'/'/-  \
 J- -  \  L\\`.-' || .' \ \\`'J J  |
-|- '_-'. (= `.//.-.__ " _  L-/.-. |
-|-      )_\\\`|...(`-.".''.)/ -.  )---
-|- ''    )  `\.::::.`.|/.:.'`-  ``--._
+| - '_-'. (= `.//.-.__ " _  L-/.-. |
+| -      )_\\\`|...(`-.".''.)/ -.  )---
+| - ''    )  `\.::::.`.|/.:.'`-  ``--._
 J-' -'.'  )./ \::::::'X::::\` ``` ____
 ) \ ' '//  ///''.__-'--`-\\\\ \ `__
 |\\' .'/|/  ' '///  ' "` \|\\`` -.`--.
@@ -43,18 +43,18 @@ Author Matrix:
 
 Author | Responsibility
 ---|---------
-`Dana Geislinger` | Github integration, Analysis 1 & 2
-`Luay Dajani` | Tracking & Coordination, Analysis 3 & 4
-`Adil Siraj` | Code Check, Analysis 5 & 6
-`Garrett Mozey` | Quality Check, Analysis 7
+`Dana Geislinger` | ???
+`Luay Dajani` | ???
+`Adil Siraj` | ???
+`Garrett Mozey` | ???
 
 Resource Files:
 
 ## Presentation files
 File | Description
 ---|---------
-`SMU-MSDS6306-CaseStudy1-201802.Rmd` | RMarkdown file to generate an HTML output
-`SMU-MSDS6306-CaseStudy1-201802.html` | Final HTML presentation
+`.Rmd` | RMarkdown file to generate an HTML output
+`.html` | Final HTML presentation
 
 ## Metafiles
 File | Description
@@ -66,11 +66,10 @@ File | Description
 
 File | Description
 ---|---------
-`SMU-MSDS6306-CaseStudy1-201802-WORK-FILE.R` | File with preliminary code before applied to the RMarkdown
+`.R` | File with preliminary code before applied to the RMarkdown
 
 ## Data
 
 File | Description
 ---|---------
-`Beers.csv` | Data file with information about Beers
-`Breweries.csv` | Data file with information about Breweries and products
+`CaseStudy2-data.csv` | Data file with information about Beers
