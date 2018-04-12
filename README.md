@@ -33,7 +33,7 @@ Author | Responsibility
 `Dana Geislinger` | ???
 `Luay Dajani` | ???
 `Adil Siraj` | ???
-`Garrett Mozey` | ???
+`Garrett Mozey` | ??? Testing setup for rstudio version control using git
 
 Resource Files:
 
