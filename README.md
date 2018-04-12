@@ -30,10 +30,10 @@ Author Matrix:
 
 Author | Responsibility
 ---|---------
-`Dana Geislinger` | ???
-`Luay Dajani` | ???
-`Adil Siraj` | ???
-`Garrett Mozey` | ??? Testing setup for rstudio version control using git
+`Dana Geislinger` | ????
+`Luay Dajani` | ????
+`Adil Siraj` | ????
+`Garrett Mozey` | ???? 
 
 Resource Files:
 
