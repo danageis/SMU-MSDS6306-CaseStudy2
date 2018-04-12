@@ -1,4 +1,4 @@
-# SMU-MSDS6306-CaseStudy1
+# SMU-MSDS6306-CaseStudy2
 Tiger Team, Case Study 2: DDS Analytics and 
 
 
@@ -59,4 +59,5 @@ File | Description
 
 File | Description
 ---|---------
-`CaseStudy2-data.csv` | Data file with information about Beers
+`CaseStudy2-data.csv` | Data file with questionnaire and personnel responses
+`CaseStudy2-.csv` | Data file with questionnaire and personnel responses
