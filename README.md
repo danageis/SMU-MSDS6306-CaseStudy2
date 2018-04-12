@@ -60,4 +60,4 @@ File | Description
 File | Description
 ---|---------
 `CaseStudy2-data.csv` | Data file with questionnaire and personnel responses
-`CaseStudy2-.csv` | Data file with questionnaire and personnel responses
+`CaseStudy2-definition.csv` | Data file with questionnaire and personnel responses
