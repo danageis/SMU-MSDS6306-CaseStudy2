@@ -30,10 +30,10 @@ Author Matrix:
 
 Author | Responsibility
 ---|---------
-`Dana Geislinger` | ???
-`Luay Dajani` | ???
-`Adil Siraj` | ???
-`Garrett Mozey` | ???
+`Dana Geislinger` | ????
+`Luay Dajani` | ????
+`Adil Siraj` | ????
+`Garrett Mozey` | ???? 
 
 Resource Files:
 
