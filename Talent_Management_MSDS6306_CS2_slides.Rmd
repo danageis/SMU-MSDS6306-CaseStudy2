@@ -1,0 +1,64 @@
+---
+title: "Talent Management"
+author: "Tiger Team - Case Study 2: Adil Siraj, Garrett Mozey, Dana Geislinger, & Luay Dajani"
+date: "April 17, 2018"
+output: 
+  ioslides_presentation:
+    logo: image/DDS-logo.png
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## DDS Analytics... A Passion for Talent
+<div class="centered">
+![](image/Combined.png)
+</div>
+
+DDS Analytics Analysis of Employee Attrition and Retention.
+
+## Business Objectives Include:
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Points about the Data:
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Methodology:
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
+## References
+
+- Logo adapted from: "Fondo moderno de moleculas" at Vector Gratis  https://image.freepik.com/vector-gratis/fondo-moderno-de-moleculas_1035-8990.jpg
+
+## Environment Information
+
+```{r environment_notes, echo=FALSE}
+si <- sessionInfo()
+cat(si$R.version$version.string, "\n\n")
+cat("Platform:", si$R.version$platform, "\n\n")
+cat("Local:" , si$locale, "\n\n")
+cat("Packages:" , si$basePkgs, "\n\n")
+```

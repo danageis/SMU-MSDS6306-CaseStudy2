@@ -30,18 +30,18 @@ Author Matrix:
 
 Author | Responsibility
 ---|---------
-`Dana Geislinger` | ????
-`Luay Dajani` | ????
-`Adil Siraj` | ????
-`Garrett Mozey` | ???? 
+`Dana Geislinger` | Environment & Data Prep
+`Luay Dajani` | r Markdown, Slides & Analysis
+`Adil Siraj`| Codebook & Analysis
+`Garrett Mozey` | Codebook, Analysis & Graphs
 
 Resource Files:
 
 ## Presentation files
 File | Description
 ---|---------
-`.Rmd` | RMarkdown file to generate an HTML output
-`.html` | Final HTML presentation
+`Talent_Management_MSDS6306_CS2_slides.Rmd` | RMarkdown file to generate an HTML output
+`Talent_Management_MSDS6306_CS2_slides.html` | Final HTML presentation
 
 ## Metafiles
 File | Description
@@ -50,14 +50,20 @@ File | Description
 `Codebook.md` | Description file with detail level information about the variables and files
 
 ## Code
-
 File | Description
 ---|---------
-`.R` | File with preliminary code before applied to the RMarkdown
+`Talent_Management_workfile.R` | File with preliminary code before applied to the RMarkdown
 
 ## Data
-
 File | Description
 ---|---------
-`CaseStudy2-data.csv` | Data file with questionnaire and personnel responses
-`CaseStudy2-definition.csv` | Data file with questionnaire and personnel responses
+`data/CaseStudy2-data.csv` | Data file with questionnaire and personnel responses
+`data/CaseStudy2-definition.csv` | Data file with questionnaire and personnel responses
+
+## Miscellaneous / Other | Description
+File | Description
+---|---------
+`image/DDS-logo.png` | DDS Logo File
+`image/Combined.png` | DDS & THE AGENCY Combined Logo File
+
+`style.css` | R Markdown Style CSS file for controling style elements on the slides
