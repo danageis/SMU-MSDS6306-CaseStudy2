@@ -17,7 +17,7 @@ cat(paste("Rows:\t",
           )
     )
 
-# 2b-d
+# 2b
 # Clean raw data names and shorten under 12 characters
 names(dfm_attrition_data)[3] = "TravelFreq"
 names(dfm_attrition_data)[6] = "Distance"
@@ -42,3 +42,23 @@ names(dfm_attrition_data)[32] = "YearsAtComp"
 names(dfm_attrition_data)[33] = "YearsInPos"
 names(dfm_attrition_data)[34] = "LstPromoted"
 names(dfm_attrition_data)[35] = "YearsSprvsr"
+
+# 2d
+# Convert numeric categorical variables to factors
+general_ratings = c("Low", "Medium", "High", "Very High")
+dfm_attrition_data$EnvironRate = factor(dfm_attrition_data$EnvironRate, labels=general_ratings)
+dfm_attrition_data$JobInvolve = factor(dfm_attrition_data$JobInvolve, labels=general_ratings)
+dfm_attrition_data$JobSatis = factor(dfm_attrition_data$JobSatis, labels=general_ratings)
+
+# 1/2 (Low/Medium) factors omitted, as nobody in data set ranked their performance lower than 3
+dfm_attrition_data$Performance = factor(dfm_attrition_data$Performance,
+                                        labels=c("Excellent", "Outstanding")
+                                        )
+dfm_attrition_data$Relationship = factor(dfm_attrition_data$Relationship, labels=general_ratings)
+dfm_attrition_data$WorkLifeBal = factor(dfm_attrition_data$WorkLifeBal,
+                                        labels=c("Bad", "Good", "Better", "Best")
+                                        )
+dfm_attrition_data$Education = factor(dfm_attrition_data$Education,
+                                      labels=c("Below College", "College", "Bachelor", "Master", "Doctor")
+                                      )
+dfm_attrition_data$StockOption = factor(dfm_attrition_data$StockOption)
