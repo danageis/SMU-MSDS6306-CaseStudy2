@@ -41,7 +41,7 @@ names(dfm_attrition_data)[31] = "WorkLifeBal"
 names(dfm_attrition_data)[32] = "YearsAtComp"
 names(dfm_attrition_data)[33] = "YearsInPos"
 names(dfm_attrition_data)[34] = "LstPromoted"
-names(dfm_attrition_data)[35] = "YearsSprvsr"names(dfm_attrition_data)[35] = "YearsSprvsr"names(dfm_attrition_data)[35] = "YearsSprvsr"names(dfm_attrition_data)[35] = "YearsSprvsr"
+names(dfm_attrition_data)[35] = "YearsSprvsr"
 
 # 2d
 # Convert numeric categorical variables to factors
@@ -61,3 +61,4 @@ dfm_attrition_data$WorkLifeBal = factor(dfm_attrition_data$WorkLifeBal,
 dfm_attrition_data$Education = factor(dfm_attrition_data$Education,
                                       labels=c("Below College", "College", "Bachelor", "Master", "Doctor")
                                       )
+dfm_attrition_data$StockOption = factor(dfm_attrition_data$StockOption)
