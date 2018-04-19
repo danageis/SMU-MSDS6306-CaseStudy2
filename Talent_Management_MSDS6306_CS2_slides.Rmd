@@ -17,7 +17,18 @@ knitr::opts_chunk$set(echo = FALSE)
 ![](image/Combined.png)
 </div>
 
-DDS Analytics Analysis of Employee Attrition and Retention.
+Employee Attrition and Retention Agenda:
+
+- Business Objectives
+
+- Data Sourced
+
+- Methodology
+
+- Evaluation & Results
+
+- Summary
+
 
 ## Business Objectives Include:
 
