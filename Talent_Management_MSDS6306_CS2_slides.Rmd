@@ -29,7 +29,6 @@ Employee Attrition and Retention Agenda:
 
 - Summary
 
-
 ## Business Objectives Include:
 
 - Bullet 1
