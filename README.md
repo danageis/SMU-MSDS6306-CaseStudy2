@@ -58,12 +58,11 @@ File | Description
 File | Description
 ---|---------
 `data/CaseStudy2-data.csv` | Data file with questionnaire and personnel responses
-`data/CaseStudy2-definition.csv` | Data file with questionnaire and personnel responses
+`data/CaseStudy2-definition.csv` | Meta Data file describing category attributes for some of the attributes
 
 ## Miscellaneous / Other | Description
 File | Description
 ---|---------
 `image/DDS-logo.png` | DDS Logo File
 `image/Combined.png` | DDS & THE AGENCY Combined Logo File
-
 `style.css` | R Markdown Style CSS file for controling style elements on the slides
