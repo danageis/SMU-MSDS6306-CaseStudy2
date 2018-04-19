@@ -5,7 +5,7 @@
 * **Image:** Contains image files for the slides
 
 ### Variables
-**AttritionData:** (data.frame) All attrition data parsed from the raw data provided for this study.
+**dfm_attrition_data:** (data.frame) All attrition data parsed from the raw data provided for this study.
 * **Age:** The age of the employee in years. Any employees under 18 were removed from the dataset.
 * **Attrition:** Whether or not the employee voluntarily resigned from the company (yes if they did, no otherwise).
 * **TravelFreq:** (Originally BusinessTravel) The relative frequency of time spent traveling for business by the employee. Can be none (Non-Travel), frequent (Travel-Frequently), or rarely (Travel-Rarely).
