@@ -23,13 +23,13 @@ DDS Analytics Analysis of Employee Attrition and Retention.
 
 - Objective is to study the attrition rate for all the employees of DDS Analytics
 - Find out the factors which contributes for the attrition from the data gathered across all Department of DDS Analytics
-- Identify the factors which contributed for attrition and provide suggestion to improve employee retention.
+- The Agency has to Identify the factors which contributed for attrition and provide suggestion to improve employee retention 
 
 ## Points about the Data:
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+- Data was cleansed and normalized for the analysis.
+- Column headings were reduced to 12 character length due to R Column heading limitations.
+- Made sure about each column that proper data types are used so that when analysis is done, it can differentiate and provide relevant data.
 
 ## Methodology:
 
