@@ -4,13 +4,26 @@
   margin: 8px 8px;
 }
 
+
 .gdbar {
   width: 600px !important;
   height: 250px !important;
 }
 
-slides > slide:not(.nobackground):before {
-  width: 150px;
-  height: 75px;
-  background-size: 150px 75px;
+.small-code pre code {
+  font-size: 1em !important;
 }
+
+/*
+.gdbar img {
+  width: 300px;
+  height: 215px;
+  margin: 8px 8px;
+}
+
+
+.gdbar {
+  width: 600px;
+  height: 250px;
+}
+*/
