@@ -45,3 +45,8 @@
 **general_ratings:** (character vector) List of strings typically used as levels for categorical variables in the dataset.
 **dfm_nstats:** (data.frame) Subset of dfm_attrition_data that will be used for descriptive statistics table.
 **dfm_desc_stats:** (data.frame) Descriptive statistics (minimum, 1st quartile, median, mean, 3rd quartile, and maximum) for dfm_nstats.
+**dfm_factors:** (data.frame) Subset of dfm_attrition_data with categorical variables of interest.
+**list_freq:** (list) Frequency of levels in dfm_factors.
+**dfm_gender_freq:** (data.frame) Frequency of gender in the dataset.
+**dfm_educ_freq:** (data.frame) Frequency of each education level in the dataset.
+**dfm_occup_freq:** (data.frame) Frequency of each job title in the dataset.
