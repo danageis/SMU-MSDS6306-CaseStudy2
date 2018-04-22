@@ -79,3 +79,18 @@ dfm_nstats = dfm_attrition_data[, c("Age",
 # Print data.frame of descriptive statistics of 7 variables
 dfm_desc_stats = as.data.frame(sapply(dfm_nstats, summary))
 dfm_desc_stats
+
+# Create histograms for Age and Monthly Income
+par(mfrow=c(1,2))
+hist(dfm_nstats$Age,
+     main="Distribution of Age",
+     xlab="Age"
+     )
+hist(dfm_nstats$MonIncome,
+     main="Distribution of Monthly Income",
+     xlab="Monthly Income"
+     )
+
+# Description (add as normal text in Rmd):
+# Age appears fairly normally distributed about the mean with some slight right skew.
+# Monthly Income appears heavily right skewed, and also appears bimodal at approximately 5,000 and 20,000.
