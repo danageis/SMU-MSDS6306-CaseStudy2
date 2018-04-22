@@ -41,3 +41,7 @@
 * **YearsInPos:** (Originally YearsInCurrentRole) The number of years the employee has been working in their current position.
 * **LstPromoted:** (Originally YearsSinceLastPromotion) The number of years since the employee’s last promotion.
 * **YearsSprvsr:** (Originally YearsWithCurrManager) The number of years the employee has been working under their current manager.
+
+**general_ratings:** (character vector) List of strings typically used as levels for categorical variables in the dataset.
+**dfm_nstats:** (data.frame) Subset of dfm_attrition_data that will be used for descriptive statistics table.
+**dfm_desc_stats:** (data.frame) Descriptive statistics (minimum, 1st quartile, median, mean, 3rd quartile, and maximum) for dfm_nstats.

@@ -62,3 +62,20 @@ dfm_attrition_data$Education = factor(dfm_attrition_data$Education,
                                       labels=c("Below College", "College", "Bachelor", "Master", "Doctor")
                                       )
 dfm_attrition_data$StockOption = factor(dfm_attrition_data$StockOption)
+
+# 3b
+# Select 7 relevant numeric variables for descriptive statistics table
+dfm_nstats = dfm_attrition_data[, c("Age",
+                                    "MonIncome",
+                                    "PayIncPct",
+                                    "Distance",
+                                    "YearsWorked",
+                                    "YearsAtComp",
+                                    "LstPromoted",
+                                    "YearsInPos"
+                                    )
+                                ]
+
+# Print data.frame of descriptive statistics of 7 variables
+dfm_desc_stats = as.data.frame(sapply(dfm_nstats, summary))
+dfm_desc_stats
