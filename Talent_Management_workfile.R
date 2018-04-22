@@ -94,3 +94,21 @@ hist(dfm_nstats$MonIncome,
 # Description (add as normal text in Rmd):
 # Age appears fairly normally distributed about the mean with some slight right skew.
 # Monthly Income appears heavily right skewed, and also appears bimodal at approximately 5,000 and 20,000.
+
+# 3c
+# Get frequency of Education, Gender and Occupation
+dfm_factors = dfm_attrition_data[, c("Gender",
+                                     "Education",
+                                     "JobRole"
+                                     )
+                                 ]
+list_freq = sapply(sapply(dfm_factors, table), prop.table)
+dfm_gender_freq = as.data.frame(list_freq[1])
+dfm_educ_freq = as.data.frame(list_freq[2])
+dfm_occup_freq = as.data.frame(list_freq[3])
+names(dfm_gender_freq) = c("Gender", "Frequency")
+names(dfm_educ_freq) = c("EducationLevel", "Frequency")
+names(dfm_occup_freq) = c("JobTitle", "Frequency")
+dfm_gender_freq
+dfm_educ_freq
+dfm_occup_freq
