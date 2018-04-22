@@ -112,3 +112,28 @@ names(dfm_occup_freq) = c("JobTitle", "Frequency")
 dfm_gender_freq
 dfm_educ_freq
 dfm_occup_freq
+
+
+# 3d
+int_male = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male","Gender"])
+
+int_female = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female","Gender"])
+
+int_male_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male" & 
+                                            dfm_attrition_data$Attrition == "Yes"
+                                          ,"Gender"])
+
+int_female_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female" & 
+                                              dfm_attrition_data$Attrition == "Yes"
+                                            ,"Gender"])
+
+total = int_female + int_male
+
+percent_male = int_male / total
+percent_female = int_female / total
+
+percent_male_attr = int_male_attr / int_male
+percent_female_attr = int_female_attr / int_female
+
+
+
