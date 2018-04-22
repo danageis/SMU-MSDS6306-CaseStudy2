@@ -47,7 +47,13 @@ Employee Attrition and Retention Agenda:
 - Bullet 2
 - Bullet 3
 
+## By Gender vs Attrition
+
+-
+
 ## Slide with R Output
+
+
 
 ```{r cars, echo = TRUE}
 summary(cars)
