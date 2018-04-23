@@ -95,8 +95,7 @@ hist(dfm_nstats$MonIncome,
 # Age appears fairly normally distributed about the mean with some slight right skew.
 # Monthly Income appears heavily right skewed, and also appears bimodal at approximately 5,000 and 20,000.
 
-# 3c
-# Get frequency of Education, Gender and Occupation
+# 3c Get frequency of Education, Gender and Occupation
 dfm_factors = dfm_attrition_data[, c("Gender",
                                      "Education",
                                      "JobRole"
@@ -107,13 +106,10 @@ dfm_gender_freq = as.data.frame(list_freq[1])
 dfm_educ_freq = as.data.frame(list_freq[2])
 dfm_occup_freq = as.data.frame(list_freq[3])
 names(dfm_gender_freq) = c("Gender", "Frequency")
-names(dfm_educ_freq) = c("EducationLevel", "Frequency")
-names(dfm_occup_freq) = c("JobTitle", "Frequency")
+names(dfm_educ_freq) = c("Education", "Frequency")
+names(dfm_occup_freq) = c("JobRole", "Frequency")
 
-#dfm_gender_freq
-#dfm_educ_freq
-#dfm_occup_freq
-
+# Get attrition calculations for Gender
 int_male = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male","Gender"])
 int_female = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female","Gender"])
 int_male_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male" & 
@@ -127,5 +123,45 @@ percent_male = int_male / total
 percent_female = int_female / total
 percent_male_attr = int_male_attr / int_male
 percent_female_attr = int_female_attr / int_female
-dfm_gender_freq[, "Attrition"] = c(percent_female_attr, percent_female_attr)
+dfm_gender_freq[, "Attrition"] = c(round(percent_female_attr, digits = 2), round(percent_male_attr, digits = 2))
+
+## Get & Set Attrition for Education
+str_column = "Education"
+vec_attr_rates = vector()
+dfm_temp = dfm_educ_freq
+
+# For loop, using generic variables set above
+for (element in dfm_temp[,str_column]){
+   int_temp_attr = length(dfm_attrition_data[dfm_attrition_data[,str_column] == element & 
+                                               dfm_attrition_data$Attrition == "Yes"
+                                             ,str_column])
+  
+   int_temp_total = int_temp_attr / 
+     length(dfm_attrition_data[dfm_attrition_data[,str_column] == element, str_column])
+   vec_attr_rates = c(vec_attr_rates, int_temp_total)
+}
+
+dfm_educ_freq["Frequency"] = round(dfm_educ_freq["Frequency"], digits = 2)
+dfm_educ_freq["Attrition"] = round(vec_attr_rates, digits = 2)
+
+## Get & Set Attrition for Occupation
+str_column = "JobRole"
+vec_attr_rates = vector()
+dfm_temp = dfm_occup_freq
+
+# For loop, using generic variables set above
+for (element in dfm_occup_freq[,str_column]){
+  int_temp_attr = length(dfm_temp[dfm_attrition_data[,str_column] == element & 
+                                    dfm_attrition_data$Attrition == "Yes"
+                                  ,str_column])
+  
+  int_temp_total = int_temp_attr / 
+    length(dfm_attrition_data[dfm_attrition_data[,str_column] == element, str_column])
+  
+  vec_attr_rates = c(vec_attr_rates, int_temp_total)
+}
+
+dfm_occup_freq["Frequency"] = round(dfm_occup_freq["Frequency"], digits = 2)
+dfm_occup_freq["Attrition"] = round(vec_attr_rates, digits = 2)
+
 

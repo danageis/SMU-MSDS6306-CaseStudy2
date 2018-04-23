@@ -8,7 +8,6 @@ output:
     smaller: false
     logo: image/DDS-logo.png
     css: styles.css
-    font_adjustment: -5
 ---
 <style>
 .small-code pre code {
@@ -39,15 +38,15 @@ Employee Attrition and Retention Agenda:
 
 ## Business Objectives Include:
 
-- Objective is to study the attrition rate for all the employees of DDS Analytics
-- Find out the factors which contributes for the attrition from the data gathered across all Department of DDS Analytics
-- The Agency has to Identify the factors which contributed for attrition and provide suggestion to improve employee retention 
+- Study the attrition rate for all the employees of The Agency.
+- Find out the factors which contributes for the attrition from the data gathered across all Department of The Agency.
+- DDS Analystics will Identify to The Agency the factors which contributed for attrition and provide suggestion to improve employee retention 
 
 ## Points about the Data:
 
-- Data was cleansed and normalized for the analysis.
+- Anonymous Data of 1,470 was extracted from The Agency HR System, cleansed, and normalized for analysis.
 - Column headings were reduced to 12 character length due to R Column heading limitations.
-- Made sure about each column that proper data types are used so that when analysis is done, it can differentiate and provide relevant data.
+- All Entries contain proper data types used so that when analysis is done, it can differentiate and provide relevant data.
 
 ## Methodology:
 
@@ -57,7 +56,7 @@ Employee Attrition and Retention Agenda:
 
 ## Code {.smaller}
 
-``` {r Code, echo = TRUE}
+``` {r Code1, echo = TRUE}
 
 # 2a Read raw data
 dfm_attrition_data = read.csv("data/CaseStudy2-data.csv")
@@ -97,8 +96,7 @@ names(dfm_attrition_data)[33] = "YearsInPos"
 names(dfm_attrition_data)[34] = "LstPromoted"
 names(dfm_attrition_data)[35] = "YearsSprvsr"
 
-# 2d
-# Convert numeric categorical variables to factors
+# 2d Convert numeric categorical variables to factors
 general_ratings = c("Low", "Medium", "High", "Very High")
 dfm_attrition_data$EnvironRate = factor(dfm_attrition_data$EnvironRate, labels=general_ratings)
 dfm_attrition_data$JobInvolve = factor(dfm_attrition_data$JobInvolve, labels=general_ratings)
@@ -133,9 +131,10 @@ dfm_gender_freq = as.data.frame(list_freq[1])
 dfm_educ_freq = as.data.frame(list_freq[2])
 dfm_occup_freq = as.data.frame(list_freq[3])
 names(dfm_gender_freq) = c("Gender", "Frequency")
-names(dfm_educ_freq) = c("EducationLevel", "Frequency")
-names(dfm_occup_freq) = c("JobTitle", "Frequency")
+names(dfm_educ_freq) = c("Education", "Frequency")
+names(dfm_occup_freq) = c("JobRole", "Frequency")
 
+# Get attrition calculations for Gender
 int_male = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male","Gender"])
 int_female = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female","Gender"])
 int_male_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male" & 
@@ -149,7 +148,47 @@ percent_male = int_male / total
 percent_female = int_female / total
 percent_male_attr = int_male_attr / int_male
 percent_female_attr = int_female_attr / int_female
-dfm_gender_freq[, "Attrition"] = c(percent_female_attr, percent_male_attr)
+dfm_gender_freq[, "Attrition"] = c(round(percent_female_attr, digits = 2), round(percent_male_attr, digits = 2))
+
+## Get & Set Attrition for Education
+str_column = "Education"
+vec_attr_rates = vector()
+dfm_temp = dfm_educ_freq
+
+# For loop, using generic variables set above
+for (element in dfm_temp[,str_column]){
+   int_temp_attr = length(dfm_attrition_data[dfm_attrition_data[,str_column] == element & 
+                                               dfm_attrition_data$Attrition == "Yes"
+                                             ,str_column])
+  
+   int_temp_total = int_temp_attr / 
+     length(dfm_attrition_data[dfm_attrition_data[,str_column] == element, str_column])
+   vec_attr_rates = c(vec_attr_rates, int_temp_total)
+}
+
+dfm_educ_freq["Frequency"] = round(dfm_educ_freq["Frequency"], digits = 2)
+dfm_educ_freq["Attrition"] = round(vec_attr_rates, digits = 2)
+
+## Get & Set Attrition for Occupation
+str_column = "JobRole"
+vec_attr_rates = vector()
+dfm_temp = dfm_occup_freq
+
+# For loop, using generic variables set above
+for (element in dfm_occup_freq[,str_column]){
+  int_temp_attr = length(dfm_temp[dfm_attrition_data[,str_column] == element & 
+                                    dfm_attrition_data$Attrition == "Yes"
+                                  ,str_column])
+  
+  int_temp_total = int_temp_attr / 
+    length(dfm_attrition_data[dfm_attrition_data[,str_column] == element, str_column])
+  
+  vec_attr_rates = c(vec_attr_rates, int_temp_total)
+}
+
+dfm_occup_freq["Frequency"] = round(dfm_occup_freq["Frequency"], digits = 2)
+dfm_occup_freq["Attrition"] = round(vec_attr_rates, digits = 2)
+
 ```
 
 ## Gender Frequency and Attrition
@@ -160,28 +199,29 @@ library(knitr)
 kable(dfm_gender_freq)
 ```
 
-## Slide with R Output
+## Education Frequency and Attrition
 
-```{r cars, echo = TRUE}
-summary(cars)
+```{r table_education, echo = TRUE}
+# Prepare Rmd Table
+library(knitr)
+kable(dfm_educ_freq)
 ```
 
-## Slide with Plot
+## Job Role Frequency and Attrition {.smaller}
 
-```{r pressure}
-plot(pressure)
+```{r table_occupation, echo = TRUE}
+# Prepare Rmd Table
+library(knitr)
+kable(dfm_occup_freq)
 ```
 
-## References
+## References & Environment {.smaller}
 
 - Logo adapted from: "Fondo moderno de moleculas" at Vector Gratis  https://image.freepik.com/vector-gratis/fondo-moderno-de-moleculas_1035-8990.jpg
-
-## Environment Information
 
 ```{r environment_notes, echo=FALSE}
 si <- sessionInfo()
 cat(si$R.version$version.string, "\n\n")
 cat("Platform:", si$R.version$platform, "\n\n")
-cat("Local:" , si$locale, "\n\n")
 cat("Packages:" , si$basePkgs, "\n\n")
 ```
