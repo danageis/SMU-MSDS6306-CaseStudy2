@@ -186,7 +186,7 @@ dfm_occup_freq["Attrition"] = round(vec_attr_rates, digits = 2)
 
 ## Gender Frequency and Attrition
 
-```{r table_gender, echo = TRUE}
+```{r table_gender, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
 kable(dfm_gender_freq)
@@ -194,7 +194,7 @@ kable(dfm_gender_freq)
 
 ## Education Frequency and Attrition
 
-```{r table_education, echo = TRUE}
+```{r table_education, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
 kable(dfm_educ_freq)
@@ -202,7 +202,7 @@ kable(dfm_educ_freq)
 
 ## Job Role Frequency and Attrition {.smaller}
 
-```{r table_occupation, echo = TRUE}
+```{r table_occupation, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
 kable(dfm_occup_freq)
