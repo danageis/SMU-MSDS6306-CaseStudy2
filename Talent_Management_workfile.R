@@ -209,4 +209,20 @@ dfm_educ_freq = fun_findfreq("Education", dfm_attrition_data)
 dfm_occup_freq = data.frame()
 dfm_occup_freq = fun_findfreq("JobRole", dfm_attrition_data)
 
+## Get & Set Attrition for Job Level
+dfm_joblevel_freq = data.frame()
+dfm_joblevel_freq = fun_findfreq("JobLevel", dfm_attrition_data)
+
+## Get & Set Attrition for Stock Option
+dfm_stockoption_freq = data.frame()
+dfm_stockoption_freq = fun_findfreq("StockOption", dfm_attrition_data)
+
+## Get & Set Attrition for Job Involvement
+dfm_jobinvolve_freq = data.frame()
+dfm_jobinvolve_freq = fun_findfreq("JobInvolve", dfm_attrition_data)
+
+
+
+
+
 
