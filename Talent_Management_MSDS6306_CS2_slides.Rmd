@@ -142,61 +142,6 @@ names(dfm_gender_freq) = c("Gender", "Frequency")
 names(dfm_educ_freq) = c("Education", "Frequency")
 names(dfm_occup_freq) = c("JobRole", "Frequency")
 
-# Get attrition calculations for Gender
-int_male = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male","Gender"])
-int_female = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female","Gender"])
-int_male_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male" & 
-                                            dfm_attrition_data$Attrition == "Yes"
-                                          ,"Gender"])
-int_female_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female" & 
-                                              dfm_attrition_data$Attrition == "Yes"
-                                            ,"Gender"])
-total = int_female + int_male
-percent_male = int_male / total
-percent_female = int_female / total
-percent_male_attr = int_male_attr / int_male
-percent_female_attr = int_female_attr / int_female
-dfm_gender_freq[, "Attrition"] = c(round(percent_female_attr, digits = 2), round(percent_male_attr, digits = 2))
-
-## Get & Set Attrition for Education
-str_column = "Education"
-vec_attr_rates = vector()
-dfm_temp = dfm_educ_freq
-
-# For loop, using generic variables set above
-for (element in dfm_temp[,str_column]){
-   int_temp_attr = length(dfm_attrition_data[dfm_attrition_data[,str_column] == element & 
-                                               dfm_attrition_data$Attrition == "Yes"
-                                             ,str_column])
-  
-   int_temp_total = int_temp_attr / 
-     length(dfm_attrition_data[dfm_attrition_data[,str_column] == element, str_column])
-   vec_attr_rates = c(vec_attr_rates, int_temp_total)
-}
-
-dfm_educ_freq["Frequency"] = round(dfm_educ_freq["Frequency"], digits = 2)
-dfm_educ_freq["Attrition"] = round(vec_attr_rates, digits = 2)
-
-## Get & Set Attrition for Occupation
-str_column = "JobRole"
-vec_attr_rates = vector()
-dfm_temp = dfm_occup_freq
-
-# For loop, using generic variables set above
-for (element in dfm_occup_freq[,str_column]){
-  int_temp_attr = length(dfm_temp[dfm_attrition_data[,str_column] == element & 
-                                    dfm_attrition_data$Attrition == "Yes"
-                                  ,str_column])
-  
-  int_temp_total = int_temp_attr / 
-    length(dfm_attrition_data[dfm_attrition_data[,str_column] == element, str_column])
-  
-  vec_attr_rates = c(vec_attr_rates, int_temp_total)
-}
-
-dfm_occup_freq["Frequency"] = round(dfm_occup_freq["Frequency"], digits = 2)
-dfm_occup_freq["Attrition"] = round(vec_attr_rates, digits = 2)
-
 # Compare attrition rate betwen different groups of monthly income
 salary_bins = c("0-5k", "5-10k", "10-15k", "15-20k")
 dfm_attrition_data$IncLevels = cut(dfm_attrition_data$MonIncome,
@@ -214,6 +159,55 @@ for (level in salary_bins) {
                       )
   attrit_by_sal_pct[level] = yes_attrit / sal_counts[level] * 100
 }
+
+## Function to quickly find frequencies for unique values and associated attrition
+## Create Funciton to find Frequency vs Attrition to put on a table later
+fun_findfreq <- function(str_column, dfm_input){
+  vec_attr_rates = vector()
+  dfm_output_freq = data.frame()
+  # find total observations
+  total = length(dfm_input[dfm_input[,str_column]])
+  # find unique entries
+  vec_uniquevalues = summary(dfm_input[,str_column])
+  names(vec_uniquevalues)
+  # set the frequency of the unique entries in teh dataframe
+  dfm_output_freq = as.data.frame(names(vec_uniquevalues))
+  colnames(dfm_output_freq) = str_column; 
+  dfm_output_freq["Frequency"] = round(vec_uniquevalues/total, digits = 2)
+  
+  # for loop to find attrition
+  for (element in dfm_output_freq[,str_column]){
+    int_temp_attr = length(dfm_input[dfm_input[,str_column] == element & 
+                                       dfm_input$Attrition == "Yes"
+                                     ,str_column])
+    int_temp_attr_perc = int_temp_attr / 
+      length(dfm_input[dfm_input[,str_column] == element, str_column])
+    vec_attr_rates = c(vec_attr_rates, int_temp_attr_perc)
+  }
+  # Add attrition stats in dataframe
+  dfm_output_freq["Attrition"] = round(vec_attr_rates, digits = 2)
+  return(dfm_output_freq)
+}
+
+## Get & Set Attrition for Occupation
+dfm_jobsatis_freq = data.frame()
+dfm_jobsatis_freq = fun_findfreq("JobSatis", dfm_attrition_data)
+
+## Get & Set Attrition for Performance
+dfm_performance_freq = data.frame()
+dfm_performance_freq = fun_findfreq("Performance", dfm_attrition_data)
+
+## Get & Set Attrition for Gender
+dfm_gender_freq = data.frame()
+dfm_gender_freq = fun_findfreq("Gender", dfm_attrition_data)
+
+## Get & Set Attrition for Education
+dfm_educ_freq = data.frame()
+dfm_educ_freq = fun_findfreq("Education", dfm_attrition_data)
+
+## Get & Set Attrition for Education
+dfm_occup_freq = data.frame()
+dfm_occup_freq = fun_findfreq("JobRole", dfm_attrition_data)
 
 ```
 ## Descriptive Statistics for Relevant Variables
@@ -272,6 +266,22 @@ kable(dfm_educ_freq)
 # Prepare Rmd Table
 library(knitr)
 kable(dfm_occup_freq)
+```
+
+## Job Satisfaction Frequency and Attrition {.smaller}
+
+```{r table_jobsatis, echo = FALSE, include = TRUE}
+# Prepare Rmd Table
+library(knitr)
+kable(dfm_jobsatis_freq)
+```
+
+## Job Performance Frequency and Attrition {.smaller}
+
+```{r table_jobperform, echo = FALSE, include = TRUE}
+# Prepare Rmd Table
+library(knitr)
+kable(dfm_performance_freq)
 ```
 
 ## Monthly Income and Attrition {.smaller}

@@ -119,27 +119,6 @@ dfm_attrition_data$IncLevels = cut(dfm_attrition_data$MonIncome,
                                    breaks=c(0, 5000, 10000, 15000, 20000),
                                    labels=salary_bins
                                    )
-# 3d
-int_male = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male","Gender"])
-
-int_female = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female","Gender"])
-
-int_male_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male" & 
-                                            dfm_attrition_data$Attrition == "Yes"
-                                          ,"Gender"])
-
-int_female_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female" & 
-                                              dfm_attrition_data$Attrition == "Yes"
-                                            ,"Gender"])
-
-total = int_female + int_male
-
-percent_male = int_male / total
-percent_female = int_female / total
-
-percent_male_attr = int_male_attr / int_male
-percent_female_attr = int_female_attr / int_female
-
 # Calculate % of employees attrition w/in salary groups
 sal_counts = summary(dfm_attrition_data$IncLevels)
 attrit_by_sal_pct = numeric()
@@ -180,3 +159,54 @@ plot(x=levels(dfm_attrition_data$RaiseFactor),
         ylab="Attrition (% Yes)",
         xlab="Price Increase (%)"
 )
+
+## Function to quickly find frequencies for unique values and associated attrition
+## Create Funciton to find Frequency vs Attrition to put on a table later
+fun_findfreq <- function(str_column, dfm_input){
+  vec_attr_rates = vector()
+  dfm_output_freq = data.frame()
+  # find total observations
+  total = length(dfm_input[dfm_input[,str_column]])
+  # find unique entries
+  vec_uniquevalues = summary(dfm_input[,str_column])
+  names(vec_uniquevalues)
+  # set the frequency of the unique entries in teh dataframe
+  dfm_output_freq = as.data.frame(names(vec_uniquevalues))
+  colnames(dfm_output_freq) = str_column; 
+  dfm_output_freq["Frequency"] = round(vec_uniquevalues/total, digits = 2)
+  
+  # for loop to find attrition
+  for (element in dfm_output_freq[,str_column]){
+    int_temp_attr = length(dfm_input[dfm_input[,str_column] == element & 
+                                       dfm_input$Attrition == "Yes"
+                                     ,str_column])
+    int_temp_attr_perc = int_temp_attr / 
+      length(dfm_input[dfm_input[,str_column] == element, str_column])
+    vec_attr_rates = c(vec_attr_rates, int_temp_attr_perc)
+  }
+  # Add attrition stats in dataframe
+  dfm_output_freq["Attrition"] = round(vec_attr_rates, digits = 2)
+  return(dfm_output_freq)
+}
+
+## Get & Set Attrition for Occupation
+dfm_jobsatis_freq = data.frame()
+dfm_jobsatis_freq = fun_findfreq("JobSatis", dfm_attrition_data)
+
+## Get & Set Attrition for Performance
+dfm_performance_freq = data.frame()
+dfm_performance_freq = fun_findfreq("Performance", dfm_attrition_data)
+
+## Get & Set Attrition for Gender
+dfm_gender_freq = data.frame()
+dfm_gender_freq = fun_findfreq("Gender", dfm_attrition_data)
+
+## Get & Set Attrition for Education
+dfm_educ_freq = data.frame()
+dfm_educ_freq = fun_findfreq("Education", dfm_attrition_data)
+
+## Get & Set Attrition for Education
+dfm_occup_freq = data.frame()
+dfm_occup_freq = fun_findfreq("JobRole", dfm_attrition_data)
+
+
