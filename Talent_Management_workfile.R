@@ -119,6 +119,26 @@ dfm_attrition_data$IncLevels = cut(dfm_attrition_data$MonIncome,
                                    breaks=c(0, 5000, 10000, 15000, 20000),
                                    labels=salary_bins
                                    )
+# 3d
+int_male = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male","Gender"])
+
+int_female = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female","Gender"])
+
+int_male_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male" & 
+                                            dfm_attrition_data$Attrition == "Yes"
+                                          ,"Gender"])
+
+int_female_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female" & 
+                                              dfm_attrition_data$Attrition == "Yes"
+                                            ,"Gender"])
+
+total = int_female + int_male
+
+percent_male = int_male / total
+percent_female = int_female / total
+
+percent_male_attr = int_male_attr / int_male
+percent_female_attr = int_female_attr / int_female
 
 # Calculate % of employees attrition w/in salary groups
 sal_counts = summary(dfm_attrition_data$IncLevels)
