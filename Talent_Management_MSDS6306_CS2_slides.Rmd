@@ -54,9 +54,7 @@ Employee Attrition and Retention Agenda:
 - Bullet 2
 - Bullet 3
 
-## Code {.smaller}
-
-``` {r Code1, echo = TRUE}
+``` {r Code1, echo = FALSE, include = FALSE}
 
 # 2a Read raw data
 dfm_attrition_data = read.csv("data/CaseStudy2-data.csv")
@@ -115,11 +113,6 @@ dfm_attrition_data$Education = factor(dfm_attrition_data$Education,
                                       )
 dfm_attrition_data$StockOption = factor(dfm_attrition_data$StockOption)
 
-```
-
-## Code for Frequency Calculations {.smaller}
-
-```{r Frequency_Calculations, echo = TRUE}
 # 3c Get frequency of Education, Gender and Occupation
 dfm_factors = dfm_attrition_data[, c("Gender",
                                      "Education",
