@@ -95,7 +95,8 @@ hist(dfm_nstats$MonIncome,
 # Age appears fairly normally distributed about the mean with some slight right skew.
 # Monthly Income appears heavily right skewed, and also appears bimodal at approximately 5,000 and 20,000.
 
-# 3c Get frequency of Education, Gender and Occupation
+# 3c
+# Get frequency of Education, Gender and Occupation
 dfm_factors = dfm_attrition_data[, c("Gender",
                                      "Education",
                                      "JobRole"
@@ -106,62 +107,56 @@ dfm_gender_freq = as.data.frame(list_freq[1])
 dfm_educ_freq = as.data.frame(list_freq[2])
 dfm_occup_freq = as.data.frame(list_freq[3])
 names(dfm_gender_freq) = c("Gender", "Frequency")
-names(dfm_educ_freq) = c("Education", "Frequency")
-names(dfm_occup_freq) = c("JobRole", "Frequency")
+names(dfm_educ_freq) = c("EducationLevel", "Frequency")
+names(dfm_occup_freq) = c("JobTitle", "Frequency")
+dfm_gender_freq
+dfm_educ_freq
+dfm_occup_freq
 
-# Get attrition calculations for Gender
-int_male = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male","Gender"])
-int_female = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female","Gender"])
-int_male_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Male" & 
-                                            dfm_attrition_data$Attrition == "Yes"
-                                          ,"Gender"])
-int_female_attr = length(dfm_attrition_data[dfm_attrition_data$Gender == "Female" & 
-                                              dfm_attrition_data$Attrition == "Yes"
-                                            ,"Gender"])
-total = int_female + int_male
-percent_male = int_male / total
-percent_female = int_female / total
-percent_male_attr = int_male_attr / int_male
-percent_female_attr = int_female_attr / int_female
-dfm_gender_freq[, "Attrition"] = c(round(percent_female_attr, digits = 2), round(percent_male_attr, digits = 2))
+# Compare attrition rate betwen different groups of monthly income
+salary_bins = c("0-5k", "5-10k", "10-15k", "15-20k")
+dfm_attrition_data$IncLevels = cut(dfm_attrition_data$MonIncome,
+                                   breaks=c(0, 5000, 10000, 15000, 20000),
+                                   labels=salary_bins
+                                   )
 
-## Get & Set Attrition for Education
-str_column = "Education"
-vec_attr_rates = vector()
-dfm_temp = dfm_educ_freq
-
-# For loop, using generic variables set above
-for (element in dfm_temp[,str_column]){
-   int_temp_attr = length(dfm_attrition_data[dfm_attrition_data[,str_column] == element & 
-                                               dfm_attrition_data$Attrition == "Yes"
-                                             ,str_column])
-  
-   int_temp_total = int_temp_attr / 
-     length(dfm_attrition_data[dfm_attrition_data[,str_column] == element, str_column])
-   vec_attr_rates = c(vec_attr_rates, int_temp_total)
+# Calculate % of employees attrition w/in salary groups
+sal_counts = summary(dfm_attrition_data$IncLevels)
+attrit_by_sal_pct = numeric()
+for (level in salary_bins) {
+  yes_attrit = length(dfm_attrition_data$IncLevels[dfm_attrition_data$Attrition == "Yes"
+                                                   & dfm_attrition_data$IncLevels == level
+                                                   ]
+                      )
+  attrit_by_sal_pct[level] = yes_attrit / sal_counts[level] * 100
 }
 
-dfm_educ_freq["Frequency"] = round(dfm_educ_freq["Frequency"], digits = 2)
-dfm_educ_freq["Attrition"] = round(vec_attr_rates, digits = 2)
+# Plot results as a bar chart
+par(mfrow=c(1,1))
+barplot(attrit_by_sal_pct,
+        ylim=c(0, 25),
+        main="Attrition Rate by Salary Level",
+        ylab="Attrition (% Yes)",
+        xlab="Salary (Monthly Income)"
+        )
 
-## Get & Set Attrition for Occupation
-str_column = "JobRole"
-vec_attr_rates = vector()
-dfm_temp = dfm_occup_freq
-
-# For loop, using generic variables set above
-for (element in dfm_occup_freq[,str_column]){
-  int_temp_attr = length(dfm_temp[dfm_attrition_data[,str_column] == element & 
-                                    dfm_attrition_data$Attrition == "Yes"
-                                  ,str_column])
-  
-  int_temp_total = int_temp_attr / 
-    length(dfm_attrition_data[dfm_attrition_data[,str_column] == element, str_column])
-  
-  vec_attr_rates = c(vec_attr_rates, int_temp_total)
+# Comparing percent salary hike vs attrition
+dfm_attrition_data$RaiseFactor = as.factor(dfm_attrition_data$PayIncPct)
+raise_counts = summary(dfm_attrition_data$RaiseFactor)
+attrit_by_raise_pct = numeric()
+for (level in levels(dfm_attrition_data$RaiseFactor)) {
+  yes_attrit = length(dfm_attrition_data$RaiseFactor[dfm_attrition_data$Attrition == "Yes"
+                                                     & dfm_attrition_data$RaiseFactor == level
+                                                     ]
+                      )
+  attrit_by_raise_pct[level] = yes_attrit / raise_counts[level] * 100
 }
 
-dfm_occup_freq["Frequency"] = round(dfm_occup_freq["Frequency"], digits = 2)
-dfm_occup_freq["Attrition"] = round(vec_attr_rates, digits = 2)
-
-
+# Plot results as a scatterplot
+plot(x=levels(dfm_attrition_data$RaiseFactor),
+     y=attrit_by_raise_pct,
+        ylim=c(0, 30),
+        main="Attrition Rate by Raise Percentage",
+        ylab="Attrition (% Yes)",
+        xlab="Price Increase (%)"
+)
