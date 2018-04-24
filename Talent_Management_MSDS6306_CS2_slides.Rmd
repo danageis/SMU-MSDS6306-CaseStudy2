@@ -250,6 +250,19 @@ dfm_managerlevel_counts = fun_findfreq("JobRole", dfm_attrition_data, counts_not
 dfm_managerlevel_countsdisplay = dfm_managerlevel_counts[dfm_managerlevel_counts$JobRole == 
                                                     c("Manager", "Manufacturing Director", "Research Director"),]
 
+# Display tables as percentages for printing
+#   df: dataframe to display as percentage
+#   skip: vector of column names not to convert
+library('scales')
+as_pct = function (df, skip=c()) {
+  new_df = df
+  for (var in names(new_df)) {
+    if (is(new_df[, var], "numeric") && ! var %in% skip) {
+      new_df[, var] = percent(new_df[, var])
+    }
+  }
+  new_df
+}
 ```
 ## Descriptive Statistics for Relevant Variables
 
@@ -290,7 +303,7 @@ hist(dfm_nstats$MonIncome,
 ```{r table_gender, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_gender_freq)
+kable(as_pct(dfm_gender_freq))
 ```
 
 ## Education Frequency and Attrition
@@ -298,7 +311,7 @@ kable(dfm_gender_freq)
 ```{r table_education, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_educ_freq)
+kable(as_pct(dfm_educ_freq))
 ```
 
 ## Job Role Frequency and Attrition {.smaller}
@@ -306,7 +319,7 @@ kable(dfm_educ_freq)
 ```{r table_occupation, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_occup_freq)
+kable(as_pct(dfm_occup_freq))
 ```
 
 ## Job Satisfaction Frequency and Attrition
@@ -314,7 +327,7 @@ kable(dfm_occup_freq)
 ```{r table_jobsatis, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_jobsatis_freq)
+kable(as_pct(dfm_jobsatis_freq))
 ```
 
 ## Job Performance Frequency and Attrition
@@ -322,7 +335,7 @@ kable(dfm_jobsatis_freq)
 ```{r table_jobperform, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_performance_freq)
+kable(as_pct(dfm_performance_freq))
 ```
 
 ## Job Level Frequency and Attrition
@@ -330,7 +343,7 @@ kable(dfm_performance_freq)
 ```{r table_joblevel, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_joblevel_freq)
+kable(as_pct(dfm_joblevel_freq))
 ```
 
 ## Stock Option Frequency and Attrition
@@ -338,7 +351,7 @@ kable(dfm_joblevel_freq)
 ```{r table_stockoption, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_stockoption_freq)
+kable(as_pct(dfm_stockoption_freq))
 ```
 
 ## Job Involvement Frequency and Attrition
@@ -346,7 +359,7 @@ kable(dfm_stockoption_freq)
 ```{r table_jobinvolve, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_jobinvolve_freq)
+kable(as_pct(dfm_jobinvolve_freq))
 ```
 
 ## Training Times Last Year
@@ -354,7 +367,7 @@ kable(dfm_jobinvolve_freq)
 ```{r table_training, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_traininglstyr_freq)
+kable(as_pct(dfm_traininglstyr_freq))
 ```
 
 
@@ -364,7 +377,7 @@ kable(dfm_traininglstyr_freq)
 ```{r table_mgmt, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
-kable(dfm_managerlevel_countsdisplay)
+kable(as_pct(dfm_managerlevel_countsdisplay, c("Count")))
 ```
 
 ## Monthly Income and Attrition {.smaller}

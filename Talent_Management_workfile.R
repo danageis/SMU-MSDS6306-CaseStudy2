@@ -230,8 +230,16 @@ dfm_managerlevel_counts = fun_findfreq("JobRole", dfm_attrition_data, counts_not
 dfm_managerlevel_countsdisplay = dfm_managerlevel_counts[dfm_managerlevel_counts$JobRole == 
                                                            c("Manager", "Manufacturing Director", "Research Director"),]
 
-
-
-
-
-
+# Display tables as percentages for printing
+#   df: dataframe to display as percentage
+#   skip: vector of column names not to convert
+library('scales')
+as_pct = function (df, skip=c()) {
+  new_df = df
+  for (var in names(new_df)) {
+    if (is(new_df[, var], "numeric") && ! var %in% skip) {
+      new_df[, var] = percent(new_df[, var])
+    }
+  }
+  new_df
+}
