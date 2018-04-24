@@ -316,6 +316,8 @@ kable(as_pct(dfm_gender_freq))
 
 ```{r plot_gender, echo=FALSE, include=TRUE}
 # Plot attrition by gender and gender frequency
+library(knitr)
+library(ggplot2)
 df_plot_gender = dfm_gender_freq
 df_plot_gender$pct_of = df_plot_gender[, 2] * df_plot_gender[, 3] * 100
 df_plot_gender[, 2] = df_plot_gender[, 2] * 100
@@ -330,6 +332,7 @@ ggplot(df_plot_gender) +
   geom_bar(aes(x=Gender, y=pct_of), stat='identity', fill="Red") +
   labs(title="Attrition by Gender",
        subtitle="Frequency with Attrition Portion Highlighted",
+       x="Gender",
        y="Percentage"
        )
 ```
@@ -346,6 +349,8 @@ kable(as_pct(dfm_educ_freq))
 
 ```{r plot_educ, echo=FALSE, include=TRUE}
 # Education level attrition and frequenct bar chart
+library(knitr)
+library(ggplot2)
 df_plot_educ = dfm_educ_freq
 df_plot_educ$pct_of = df_plot_educ[, 2] * df_plot_educ[, 3] * 100
 df_plot_educ[, 2] = df_plot_educ[, 2] * 100
@@ -358,8 +363,9 @@ df_plot_educ[, 1] = factor(df_plot_educ[, 1],
 ggplot(df_plot_educ) +
   geom_bar(aes(x=Education, y=Frequency), stat='identity', fill="Blue") +
   geom_bar(aes(x=Education, y=pct_of), stat='identity', fill="Red") +
-  labs(title="Attrition by Education Level",
+  labs(title="Attrition by Education",
        subtitle="Frequency with Attrition Portion Highlighted",
+       x="Education Level",
        y="Percentage"
        )
 ```
@@ -372,12 +378,63 @@ library(knitr)
 kable(as_pct(dfm_occup_freq))
 ```
 
+## Job Role Frequency and Attrition {.smaller}
+
+```{r plot_occ, echo=FALSE, include=TRUE}
+# Occupation attrition and frequenct bar chart
+library(knitr)
+library(ggplot2)
+df_plot_occup = dfm_occup_freq
+df_plot_occup$pct_of = df_plot_occup[, 2] * df_plot_occup[, 3] * 100
+df_plot_occup[, 2] = df_plot_occup[, 2] * 100
+df_plot_occup[, 1] = factor(df_plot_occup[, 1],
+                           levels=df_plot_occup[, 1][order(df_plot_occup[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+ggplot(df_plot_occup) +
+  geom_bar(aes(x=JobRole, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=JobRole, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Occupation",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       x="Job Title",
+       y="Percentage"
+       ) +
+  theme(axis.text.x=element_text(angle=45, hjust=1, vjust = 1))
+```
+
 ## Job Satisfaction Frequency and Attrition
 
 ```{r table_jobsatis, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
 kable(as_pct(dfm_jobsatis_freq))
+```
+
+## Job Satisfaction Frequency and Attrition
+
+```{r plot_satis, echo=FALSE, include=TRUE}
+# Satisfaction attrition and frequenct bar chart
+library(knitr)
+library(ggplot2)
+df_plot_jobsatis = dfm_jobsatis_freq
+df_plot_jobsatis$pct_of = df_plot_jobsatis[, 2] * df_plot_jobsatis[, 3] * 100
+df_plot_jobsatis[, 2] = df_plot_jobsatis[, 2] * 100
+df_plot_jobsatis[, 1] = factor(df_plot_jobsatis[, 1],
+                           levels=df_plot_jobsatis[, 1][order(df_plot_jobsatis[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+ggplot(df_plot_jobsatis) +
+  geom_bar(aes(x=JobSatis, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=JobSatis, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Job Satisfaction",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       x="Job Satisfaction Level",
+       y="Percentage"
+       )
 ```
 
 ## Job Performance Frequency and Attrition
@@ -388,12 +445,62 @@ library(knitr)
 kable(as_pct(dfm_performance_freq))
 ```
 
+## Job Performance Frequency and Attrition
+
+```{r plot_perf, echo=FALSE, include=TRUE}
+# Performance attrition and frequenct bar chart
+library(knitr)
+library(ggplot2)
+df_plot_performance = dfm_performance_freq
+df_plot_performance$pct_of = df_plot_performance[, 2] * df_plot_performance[, 3] * 100
+df_plot_performance[, 2] = df_plot_performance[, 2] * 100
+df_plot_performance[, 1] = factor(df_plot_performance[, 1],
+                           levels=df_plot_performance[, 1][order(df_plot_performance[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+ggplot(df_plot_performance) +
+  geom_bar(aes(x=Performance, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=Performance, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Job Performance Rating",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       x="Job Performance Level",
+       y="Percentage"
+       )
+```
+
 ## Job Level Frequency and Attrition
 
 ```{r table_joblevel, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
 kable(as_pct(dfm_joblevel_freq))
+```
+
+## Job Level Frequency and Attrition
+
+```{r plot_joblevel, echo=FALSE, include=TRUE}
+# Performance attrition and frequenct bar chart
+library(knitr)
+library(ggplot2)
+df_plot_joblevel = dfm_joblevel_freq
+df_plot_joblevel$pct_of = df_plot_joblevel[, 2] * df_plot_joblevel[, 3] * 100
+df_plot_joblevel[, 2] = df_plot_joblevel[, 2] * 100
+df_plot_joblevel[, 1] = factor(df_plot_joblevel[, 1],
+                           levels=df_plot_joblevel[, 1][order(df_plot_joblevel[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+ggplot(df_plot_joblevel) +
+  geom_bar(aes(x=JobLevel, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=JobLevel, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Job Level Rating",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       x="Job Level",
+       y="Percentage"
+       )
 ```
 
 ## Stock Option Frequency and Attrition
@@ -404,6 +511,31 @@ library(knitr)
 kable(as_pct(dfm_stockoption_freq))
 ```
 
+## Stock Option Frequency and Attrition
+
+```{r plot_stockopt, echo=FALSE, include=TRUE}
+# Performance attrition and frequenct bar chart
+library(knitr)
+library(ggplot2)
+df_plot_stockoption = dfm_stockoption_freq
+df_plot_stockoption$pct_of = df_plot_stockoption[, 2] * df_plot_stockoption[, 3] * 100
+df_plot_stockoption[, 2] = df_plot_stockoption[, 2] * 100
+df_plot_stockoption[, 1] = factor(df_plot_stockoption[, 1],
+                           levels=df_plot_stockoption[, 1][order(df_plot_stockoption[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+ggplot(df_plot_stockoption) +
+  geom_bar(aes(x=StockOption, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=StockOption, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Stock Option Rating",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       x="Stock Option Level",
+       y="Percentage"
+       )
+```
+
 ## Job Involvement Frequency and Attrition
 
 ```{r table_jobinvolve, echo = FALSE, include = TRUE}
@@ -412,12 +544,62 @@ library(knitr)
 kable(as_pct(dfm_jobinvolve_freq))
 ```
 
+## Job Involvement Frequency and Attrition
+
+```{r plot_jobinvolve, echo=FALSE, include=TRUE}
+# Performance attrition and frequenct bar chart
+library(knitr)
+library(ggplot2)
+df_plot_jobinvolve = dfm_jobinvolve_freq
+df_plot_jobinvolve$pct_of = df_plot_jobinvolve[, 2] * df_plot_jobinvolve[, 3] * 100
+df_plot_jobinvolve[, 2] = df_plot_jobinvolve[, 2] * 100
+df_plot_jobinvolve[, 1] = factor(df_plot_jobinvolve[, 1],
+                           levels=df_plot_jobinvolve[, 1][order(df_plot_jobinvolve[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+ggplot(df_plot_jobinvolve) +
+  geom_bar(aes(x=JobInvolve, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=JobInvolve, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Job Involvement Rating",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       x="Job Involvement Level",
+       y="Percentage"
+       )
+```
+
 ## Training Times Last Year
 
 ```{r table_training, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
 kable(as_pct(dfm_traininglstyr_freq))
+```
+
+## Training Times Last Year
+
+```{r plot_traininglstyr, echo=FALSE, include=TRUE}
+# Performance attrition and frequenct bar chart
+library(knitr)
+library(ggplot2)
+df_plot_traininglstyr = dfm_traininglstyr_freq
+df_plot_traininglstyr$pct_of = df_plot_traininglstyr[, 2] * df_plot_traininglstyr[, 3] * 100
+df_plot_traininglstyr[, 2] = df_plot_traininglstyr[, 2] * 100
+df_plot_traininglstyr[, 1] = factor(df_plot_traininglstyr[, 1],
+                           levels=df_plot_traininglstyr[, 1][order(df_plot_traininglstyr[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+ggplot(df_plot_traininglstyr) +
+  geom_bar(aes(x=TrainLastYr, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=TrainLastYr, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Training Opportunities",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       x="Trainings Offered in the Past Year",
+       y="Percentage"
+       )
 ```
 
 ## Management Position Counts and Attrition
@@ -458,9 +640,9 @@ df_plot_wl[, 1] = factor(df_plot_wl[, 1],
                            )
 ggplot(df_plot_wl) +
   geom_bar(aes(x=WorkLifeBal, y=Frequency), stat='identity', fill="Blue") +
-  geom_bar(aes(x=WorkLifeBal, y=pct_of, label=pct_of), stat='identity', fill="Red") +
+  geom_bar(aes(x=WorkLifeBal, y=pct_of), stat='identity', fill="Red") +
   labs(title="Attrition by Work-Life Balance",
-       subtitle="Frequency with Attrition Portion (Labelled) Highlighted",
+       subtitle="Frequency with Attrition Portion Highlighted",
        x="Work-Life Balance Survey Rating",
        y="Percentage"
        )
