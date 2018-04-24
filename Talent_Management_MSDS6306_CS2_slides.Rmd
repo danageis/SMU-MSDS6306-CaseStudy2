@@ -36,35 +36,35 @@ Employee Attrition and Retention Agenda:
 
 - Summary
 
-## Business Objectives Include:
+## Business Objectives
 <div class="centered">
 ![](image/shake.jpg)
 </div>
 
 - Study the attrition rate for all the employees of The Agency.
-- Find out the factors which contributes for the attrition from the data gathered across all Department of The Agency.
-- DDS Analystics will Identify to The Agency the factors which contributed for attrition and provide suggestion to improve employee retention 
+- Examine all potential factors contributing to attrition rate from data pertaining to all departments at The Agency.
+- DDS Analytics will identify the most influential factors contributing to attrition and provide suggestions to improve employee retention at The Agency.
 
-## Points about the Data:
+## Points about the Data
 <div class="centered">
 ![](image/check.jpg)
 </div>
 
-- Anonymous Data of 1,470 was extracted from The Agency HR System, cleansed, and normalized for analysis.
-- Column headings were reduced to 12 character length due to R Column heading limitations.
-- All Entries contain proper data types used so that when analysis is done, it can differentiate and provide relevant data.
+- Anonymous data on 1,470 employees was scraped from The Agency HR System, cleaned, and normalized for analysis.
+- Column headings were reduced to 12 character length for readability and consistency.
+- All variables were re-formatted in the proper data type (discrete numeric or categorical) to ensure accurate analysis.
 
-## Methodology: {.smaller}
+## Methodology {.smaller}
 <div class="centered">
 ![](image/method.jpg)
 </div>
 
-Following is a Methodolgy we used to Analyze and determine the factors which are contributing to the Attrition:
+Following is the Methodology we used to Analyze and determine the factors which are contributing to the Attrition:
 
-- Start : We identified what sort of data is given, what different type it is, what is the total size,  some basicss about number of columns/rows, and most importantly what is the ask.
-- Plan : Before started coding anything, we planned on the flow of our analysis while coding and tried to use global variables so that those can be used without having to do separate coding for each ask.
-- Deploy : In this phase we made sure we follow our Plan, without having to do ad-hoc coding and clearly state the answers to the questions for our premilinary analysis.
-- Analyze/Optimize : After getting premilinary analysis, we further deep dived in detailed analysis and tried to identified combination of contributing factors for Attrition.
+- **Start:** We identified the type of data provided, what different type each variable is, what is the total size, some basics about number of columns/rows, and most importantly what is the question of interest.
+- **Plan:** Before coding anything, we planned the flow of our analysis. We began coding by defining global variables to define so that those can be used without having to do separate coding for each ask.
+- **Deploy:** In this phase we made sure we follow our Plan, without having to do ad-hoc coding and clearly state the answers to the questions for our preliminary analysis.
+- **Analyze/Optimize:** After preliminary analysis, we performed detailed analysis and attempted to identify the factors most significantly contributing to attrition based on statistic analysis and practical consideration.
 
 ``` {r Code1, echo = FALSE, include = FALSE}
 
@@ -286,7 +286,7 @@ kable(round(dfm_desc_stats, 1))
 
 ## Histograms for Age and Income
 - Age is fairly normal with some slight right skew.
-- Monthly Income appears heavily right skewed, and also appears bimodal at approximately 5,000 and 20,000.
+- Monthly Income appears heavily right skewed, and also appears bi-modal at approximately 5,000 and 20,000.
 
 ```{r age_income_histograms, echo = FALSE, include = TRUE}
 # Create histograms for Age and Monthly Income
@@ -670,8 +670,8 @@ ggplot(df_plot_wl) +
   - As per research, this rate is higher than peer companies at 15.3%
   - As per the data, there is a significant percentage of employees in the company are disengaged
   - Three Most Relevant Factors for Attrition from our study include: Income level and the Job level
-    - Benefits (Incuding Monthly Income, Stock Options, and Salary improvements)
-    - Job Satisfation
+    - Benefits (Including Monthly Income, Stock Options, and Salary improvements)
+    - Job Satisfaction
     - Job Involvement ???
 
 ## Executive Summary PT 3 {.smaller}
