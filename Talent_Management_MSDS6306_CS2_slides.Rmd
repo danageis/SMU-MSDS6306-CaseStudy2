@@ -612,29 +612,6 @@ barplot(attrit_by_sal_pct,
         )
 ```
 
-## Work-Life Balance
-```{r work_life_bal, echo=FALSE, include=TRUE}
-library(knitr)
-library(ggplot2)
-df_plot_wl = dfm_worklife_freq
-df_plot_wl$pct_of = df_plot_wl[, 2] * df_plot_wl[, 3] * 100
-df_plot_wl[, 2] = df_plot_wl[, 2] * 100
-df_plot_wl[, 1] = factor(df_plot_wl[, 1],
-                           levels=df_plot_wl[, 1][order(df_plot_wl[, 2],
-                                                          decreasing=TRUE
-                                                          )
-                                                    ]
-                           )
-ggplot(df_plot_wl) +
-  geom_bar(aes(x=WorkLifeBal, y=Frequency), stat='identity', fill="Blue") +
-  geom_bar(aes(x=WorkLifeBal, y=pct_of), stat='identity', fill="Red") +
-  labs(title="Attrition by Work-Life Balance",
-       subtitle="Frequency with Attrition Portion Highlighted",
-       x="Work-Life Balance Survey Rating",
-       y="Percentage"
-       )
-```
-
 ## Importance of Hourly Rate on Attrition
 ```{r job_satis_hourly_rate, echo=FALSE, include=TRUE}
 library(knitr)
@@ -722,6 +699,29 @@ scatter_smoothed = scatter_with_labels +
 # Display the scatter plot
 scatter_smoothed 
 
+```
+
+## Work-Life Balance
+```{r work_life_bal, echo=FALSE, include=TRUE}
+library(knitr)
+library(ggplot2)
+df_plot_wl = dfm_worklife_freq
+df_plot_wl$pct_of = df_plot_wl[, 2] * df_plot_wl[, 3] * 100
+df_plot_wl[, 2] = df_plot_wl[, 2] * 100
+df_plot_wl[, 1] = factor(df_plot_wl[, 1],
+                           levels=df_plot_wl[, 1][order(df_plot_wl[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+ggplot(df_plot_wl) +
+  geom_bar(aes(x=WorkLifeBal, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=WorkLifeBal, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Work-Life Balance",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       x="Work-Life Balance Survey Rating",
+       y="Percentage"
+       )
 ```
 
 ## Executive Summary PT 1: TRENDS {.smaller}
