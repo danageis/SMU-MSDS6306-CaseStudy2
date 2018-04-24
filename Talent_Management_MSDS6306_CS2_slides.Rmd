@@ -48,7 +48,9 @@ Employee Attrition and Retention Agenda:
 - Column headings were reduced to 12 character length due to R Column heading limitations.
 - All Entries contain proper data types used so that when analysis is done, it can differentiate and provide relevant data.
 
-## Methodology:Following is a Methodolgy we used to Analyze and determine the factors which are contributing to the Attrition
+## Methodology: {.smaller}
+
+Following is a Methodolgy we used to Analyze and determine the factors which are contributing to the Attrition:
 
 - Start : We identified what sort of data is given, what different type it is, what is the total size,  some basicss about number of columns/rows, and most importantly what is the ask.
 - Plan : Before started coding anything, we planned on the flow of our analysis while coding and tried to use global variables so that those can be used without having to do separate coding for each ask.
