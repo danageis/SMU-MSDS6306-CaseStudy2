@@ -242,7 +242,9 @@ dfm_jobinvolve_freq = fun_findfreq("JobInvolve", dfm_attrition_data)
 dfm_traininglstyr_freq = data.frame()
 dfm_traininglstyr_freq = fun_findfreq("TrainLastYr", dfm_attrition_data)
 
-
+## Get & Set Attrition for Work Life Balance
+dfm_worklife_freq = data.frame()
+dfm_worklife_freq = fun_findfreq("WorkLifeBal", dfm_attrition_data)
 
 ## Get Management Position counts
 dfm_managerlevel_counts = data.frame()
@@ -306,7 +308,20 @@ hist(dfm_nstats$MonIncome,
 ```{r table_gender, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
 library(knitr)
+library(ggplot2)
 kable(as_pct(dfm_gender_freq))
+df_plot_gender = dfm_gender_freq
+df_plot_gender$pct_of = df_plot_gender[, 2] * df_plot_gender[, 3] * 100
+df_plot_gender[, 2] = df_plot_gender[, 2] * 100
+```
+
+## Gender Frequency and Attrition
+
+```{r plot_gender, echo=FALSE, include=TRUE}
+ggplot(df_plot_gender) +
+  geom_bar(aes(x=Gender, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=Gender, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Gender", subtitle="Frequency with Attrition Portion Highlighted", y="Percentage")
 ```
 
 ## Education Frequency and Attrition
@@ -373,8 +388,6 @@ library(knitr)
 kable(as_pct(dfm_traininglstyr_freq))
 ```
 
-
-
 ## Management Position Counts and Attrition
 
 ```{r table_mgmt, echo = FALSE, include = TRUE}
@@ -397,6 +410,24 @@ barplot(attrit_by_sal_pct,
         col=c("Red", "Orange", "Yellow", "Green")
         )
 ```
+
+## Work-Life Balance
+```{r work_life_bal, echo=FALSE, include=TRUE}
+library(knitr)
+library(ggplot2)
+df_plot_wl = dfm_worklife_freq
+df_plot_wl$pct_of = df_plot_wl[, 2] * df_plot_wl[, 3] * 100
+df_plot_wl[, 2] = df_plot_wl[, 2] * 100
+
+ggplot(df_plot_wl) +
+  geom_bar(aes(x=WorkLifeBal, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=WorkLifeBal, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Work-Life Balance",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       x="Work-Life Balance Survey Rating",
+       y="Percentage")
+```
+
 
 ## Executive Summary PT 1 {.smaller}
 <div class="centered">
