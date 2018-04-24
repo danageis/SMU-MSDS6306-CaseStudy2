@@ -37,18 +37,27 @@ Employee Attrition and Retention Agenda:
 - Summary
 
 ## Business Objectives Include:
+<div class="centered">
+![](image/shake.jpg)
+</div>
 
 - Study the attrition rate for all the employees of The Agency.
 - Find out the factors which contributes for the attrition from the data gathered across all Department of The Agency.
 - DDS Analystics will Identify to The Agency the factors which contributed for attrition and provide suggestion to improve employee retention 
 
 ## Points about the Data:
+<div class="centered">
+![](image/check.jpg)
+</div>
 
 - Anonymous Data of 1,470 was extracted from The Agency HR System, cleansed, and normalized for analysis.
 - Column headings were reduced to 12 character length due to R Column heading limitations.
 - All Entries contain proper data types used so that when analysis is done, it can differentiate and provide relevant data.
 
 ## Methodology: {.smaller}
+<div class="centered">
+![](image/method.jpg)
+</div>
 
 Following is a Methodolgy we used to Analyze and determine the factors which are contributing to the Attrition:
 
@@ -354,9 +363,32 @@ barplot(attrit_by_sal_pct,
         )
 ```
 
+## Executive Summary PT 1 {.smaller}
+<div class="centered">
+![](image/jumpforjoy.jpg)
+</div>
+- Insights:  The Agency 
+  - Total Attrition within the time period ???
+  - The Agnecy's versus the market/industry ??? Is it higher or lower than peer companies ???
+  - Three Most Relevant Factors for Attrition from our study include: ???
+    - Benefits (Incuding Monthly Income, Stock Options, and Salary improvements)
+    - Job Roles
+    - Job Satisfation
+    - Job Involvement ???
+
+## Executive Summary PT 2 {.smaller}
+<div class="centered">
+![](image/improve.jpg)
+</div>
+
+- Recommendations:
+- Improvements: 
+
 ## References & Environment {.smaller}
 
 - Logo adapted from: "Fondo moderno de moleculas" at Vector Gratis  https://image.freepik.com/vector-gratis/fondo-moderno-de-moleculas_1035-8990.jpg
+
+- Stick figure presentation free from: http://azart.info/presenter-medi/presenter-medi-stick-figure-holding-check-mark-presentation-clipart-great/
 
 ```{r environment_notes, echo=FALSE}
 si <- sessionInfo()
