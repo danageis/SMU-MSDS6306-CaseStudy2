@@ -291,11 +291,13 @@ kable(round(dfm_desc_stats, 1))
 par(mfrow=c(1,2))
 hist(dfm_nstats$Age,
      main="Distribution of Age",
-     xlab="Age"
+     xlab="Age",
+     col="Blue"
      )
 hist(dfm_nstats$MonIncome,
      main="Distribution of Monthly Income",
-     xlab="Monthly Income"
+     xlab="Monthly Income",
+     col="Red"
      )
 ```
 
@@ -391,7 +393,8 @@ barplot(attrit_by_sal_pct,
         ylim=c(0, 25),
         main="Attrition Rate by Salary Level",
         ylab="Attrition (% Yes)",
-        xlab="Salary (Monthly Income)"
+        xlab="Salary (Monthly Income)",
+        col=c("Red", "Orange", "Yellow", "Green")
         )
 ```
 
