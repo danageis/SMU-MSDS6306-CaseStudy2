@@ -49,6 +49,8 @@ general_ratings = c("Low", "Medium", "High", "Very High")
 dfm_attrition_data$EnvironRate = factor(dfm_attrition_data$EnvironRate, labels=general_ratings)
 dfm_attrition_data$JobInvolve = factor(dfm_attrition_data$JobInvolve, labels=general_ratings)
 dfm_attrition_data$JobSatis = factor(dfm_attrition_data$JobSatis, labels=general_ratings)
+# Though Job Level does not have equivalent string factors, the numbers will be converted to factors
+dfm_attrition_data$JobLevel = as.factor(dfm_attrition_data$JobLevel)
 
 # 1/2 (Low/Medium) factors omitted, as nobody in data set ranked their performance lower than 3
 dfm_attrition_data$Performance = factor(dfm_attrition_data$Performance,
@@ -167,10 +169,10 @@ fun_findfreq <- function(str_column, dfm_input){
   dfm_output_freq = data.frame()
   # find total observations
   total = length(dfm_input[dfm_input[,str_column]])
-  # find unique entries
+  # find unique entries // if summary gives quatriles use unique instead of summary
   vec_uniquevalues = summary(dfm_input[,str_column])
-  names(vec_uniquevalues)
-  # set the frequency of the unique entries in teh dataframe
+  
+  # set the frequency of the unique entries in the dataframe,
   dfm_output_freq = as.data.frame(names(vec_uniquevalues))
   colnames(dfm_output_freq) = str_column; 
   dfm_output_freq["Frequency"] = round(vec_uniquevalues/total, digits = 2)
@@ -221,7 +223,7 @@ dfm_stockoption_freq = fun_findfreq("StockOption", dfm_attrition_data)
 dfm_jobinvolve_freq = data.frame()
 dfm_jobinvolve_freq = fun_findfreq("JobInvolve", dfm_attrition_data)
 
-
+s
 
 
 
