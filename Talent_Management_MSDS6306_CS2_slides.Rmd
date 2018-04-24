@@ -310,18 +310,28 @@ hist(dfm_nstats$MonIncome,
 library(knitr)
 library(ggplot2)
 kable(as_pct(dfm_gender_freq))
-df_plot_gender = dfm_gender_freq
-df_plot_gender$pct_of = df_plot_gender[, 2] * df_plot_gender[, 3] * 100
-df_plot_gender[, 2] = df_plot_gender[, 2] * 100
 ```
 
 ## Gender Frequency and Attrition
 
 ```{r plot_gender, echo=FALSE, include=TRUE}
+# Plot attrition by gender and gender frequency
+df_plot_gender = dfm_gender_freq
+df_plot_gender$pct_of = df_plot_gender[, 2] * df_plot_gender[, 3] * 100
+df_plot_gender[, 2] = df_plot_gender[, 2] * 100
+df_plot_gender[, 1] = factor(df_plot_gender[, 1],
+                           levels=df_plot_gender[, 1][order(df_plot_gender[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
 ggplot(df_plot_gender) +
   geom_bar(aes(x=Gender, y=Frequency), stat='identity', fill="Blue") +
   geom_bar(aes(x=Gender, y=pct_of), stat='identity', fill="Red") +
-  labs(title="Attrition by Gender", subtitle="Frequency with Attrition Portion Highlighted", y="Percentage")
+  labs(title="Attrition by Gender",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       y="Percentage"
+       )
 ```
 
 ## Education Frequency and Attrition
@@ -330,6 +340,28 @@ ggplot(df_plot_gender) +
 # Prepare Rmd Table
 library(knitr)
 kable(as_pct(dfm_educ_freq))
+```
+
+## Education Frequency and Attrition
+
+```{r plot_educ, echo=FALSE, include=TRUE}
+# Education level attrition and frequenct bar chart
+df_plot_educ = dfm_educ_freq
+df_plot_educ$pct_of = df_plot_educ[, 2] * df_plot_educ[, 3] * 100
+df_plot_educ[, 2] = df_plot_educ[, 2] * 100
+df_plot_educ[, 1] = factor(df_plot_educ[, 1],
+                           levels=df_plot_educ[, 1][order(df_plot_educ[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+ggplot(df_plot_educ) +
+  geom_bar(aes(x=Education, y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=Education, y=pct_of), stat='identity', fill="Red") +
+  labs(title="Attrition by Education Level",
+       subtitle="Frequency with Attrition Portion Highlighted",
+       y="Percentage"
+       )
 ```
 
 ## Job Role Frequency and Attrition {.smaller}
@@ -418,14 +450,20 @@ library(ggplot2)
 df_plot_wl = dfm_worklife_freq
 df_plot_wl$pct_of = df_plot_wl[, 2] * df_plot_wl[, 3] * 100
 df_plot_wl[, 2] = df_plot_wl[, 2] * 100
-
+df_plot_wl[, 1] = factor(df_plot_wl[, 1],
+                           levels=df_plot_wl[, 1][order(df_plot_wl[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
 ggplot(df_plot_wl) +
   geom_bar(aes(x=WorkLifeBal, y=Frequency), stat='identity', fill="Blue") +
-  geom_bar(aes(x=WorkLifeBal, y=pct_of), stat='identity', fill="Red") +
+  geom_bar(aes(x=WorkLifeBal, y=pct_of, label=pct_of), stat='identity', fill="Red") +
   labs(title="Attrition by Work-Life Balance",
-       subtitle="Frequency with Attrition Portion Highlighted",
+       subtitle="Frequency with Attrition Portion (Labelled) Highlighted",
        x="Work-Life Balance Survey Rating",
-       y="Percentage")
+       y="Percentage"
+       )
 ```
 
 
