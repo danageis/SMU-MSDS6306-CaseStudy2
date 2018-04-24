@@ -164,7 +164,7 @@ plot(x=levels(dfm_attrition_data$RaiseFactor),
 
 ## Function to quickly find frequencies for unique values and associated attrition
 ## Create Funciton to find Frequency vs Attrition to put on a table later
-fun_findfreq <- function(str_column, dfm_input){
+fun_findfreq <- function(str_column, dfm_input, counts_not_frequency = FALSE){
   vec_attr_rates = vector()
   dfm_output_freq = data.frame()
   # find total observations
@@ -175,7 +175,8 @@ fun_findfreq <- function(str_column, dfm_input){
   # set the frequency of the unique entries in the dataframe,
   dfm_output_freq = as.data.frame(names(vec_uniquevalues))
   colnames(dfm_output_freq) = str_column; 
-  dfm_output_freq["Frequency"] = round(vec_uniquevalues/total, digits = 2)
+  if (!counts_not_frequency) {dfm_output_freq["Frequency"] = (round(vec_uniquevalues/total, digits = 2))}
+  else {dfm_output_freq["Count"] = (round(vec_uniquevalues, digits = 2))}
   
   # for loop to find attrition
   for (element in dfm_output_freq[,str_column]){
@@ -223,7 +224,13 @@ dfm_stockoption_freq = fun_findfreq("StockOption", dfm_attrition_data)
 dfm_jobinvolve_freq = data.frame()
 dfm_jobinvolve_freq = fun_findfreq("JobInvolve", dfm_attrition_data)
 
-s
+## Get Management Position counts
+dfm_managerlevel_counts = data.frame()
+dfm_managerlevel_counts = fun_findfreq("JobRole", dfm_attrition_data, counts_not_frequency = TRUE)
+dfm_managerlevel_countsdisplay = dfm_managerlevel_counts[dfm_managerlevel_counts$JobRole == 
+                                                           c("Manager", "Manufacturing Director", "Research Director"),]
+
+
 
 
 
