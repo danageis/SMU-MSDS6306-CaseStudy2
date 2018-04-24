@@ -56,7 +56,7 @@ Employee Attrition and Retention Agenda:
 
 ## Methodology {.smaller}
 <div class="centered">
-![](image/method.jpg)
+![](image/method_sm.jpg)
 </div>
 
 Following is the Methodology we used to Analyze and determine the factors which are contributing to the Attrition:
@@ -307,7 +307,6 @@ hist(dfm_nstats$MonIncome,
 
 ```{r table_gender, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 library(ggplot2)
 kable(as_pct(dfm_gender_freq))
 ```
@@ -316,7 +315,6 @@ kable(as_pct(dfm_gender_freq))
 
 ```{r plot_gender, echo=FALSE, include=TRUE}
 # Plot attrition by gender and gender frequency
-library(knitr)
 library(ggplot2)
 df_plot_gender = dfm_gender_freq
 df_plot_gender$pct_of = df_plot_gender[, 2] * df_plot_gender[, 3] * 100
@@ -341,7 +339,6 @@ ggplot(df_plot_gender) +
 
 ```{r table_education, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 kable(as_pct(dfm_educ_freq))
 ```
 
@@ -374,7 +371,6 @@ ggplot(df_plot_educ) +
 
 ```{r table_occupation, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 kable(as_pct(dfm_occup_freq))
 ```
 
@@ -408,7 +404,6 @@ ggplot(df_plot_occup) +
 
 ```{r table_jobsatis, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 kable(as_pct(dfm_jobsatis_freq))
 ```
 
@@ -441,7 +436,6 @@ ggplot(df_plot_jobsatis) +
 
 ```{r table_jobperform, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 kable(as_pct(dfm_performance_freq))
 ```
 
@@ -474,7 +468,6 @@ ggplot(df_plot_performance) +
 
 ```{r table_joblevel, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 kable(as_pct(dfm_joblevel_freq))
 ```
 
@@ -482,7 +475,6 @@ kable(as_pct(dfm_joblevel_freq))
 
 ```{r plot_joblevel, echo=FALSE, include=TRUE}
 # Performance attrition and frequenct bar chart
-library(knitr)
 library(ggplot2)
 df_plot_joblevel = dfm_joblevel_freq
 df_plot_joblevel$pct_of = df_plot_joblevel[, 2] * df_plot_joblevel[, 3] * 100
@@ -507,7 +499,6 @@ ggplot(df_plot_joblevel) +
 
 ```{r table_stockoption, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 kable(as_pct(dfm_stockoption_freq))
 ```
 
@@ -515,7 +506,6 @@ kable(as_pct(dfm_stockoption_freq))
 
 ```{r plot_stockopt, echo=FALSE, include=TRUE}
 # Performance attrition and frequenct bar chart
-library(knitr)
 library(ggplot2)
 df_plot_stockoption = dfm_stockoption_freq
 df_plot_stockoption$pct_of = df_plot_stockoption[, 2] * df_plot_stockoption[, 3] * 100
@@ -540,7 +530,6 @@ ggplot(df_plot_stockoption) +
 
 ```{r table_jobinvolve, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 kable(as_pct(dfm_jobinvolve_freq))
 ```
 
@@ -573,7 +562,6 @@ ggplot(df_plot_jobinvolve) +
 
 ```{r table_training, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 kable(as_pct(dfm_traininglstyr_freq))
 ```
 
@@ -606,7 +594,6 @@ ggplot(df_plot_traininglstyr) +
 
 ```{r table_mgmt, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-library(knitr)
 kable(as_pct(dfm_managerlevel_countsdisplay, c("Count")))
 ```
 
@@ -649,38 +636,97 @@ ggplot(df_plot_wl) +
 ```
 
 
-## Executive Summary PT 1 {.smaller}
+## Executive Summary PT 1: TRENDS {.smaller}
 <div class="centered">
 ![](image/IndustryTrends-2016.jpg)
 </div>
-
 
 <div class="centered">
 ![](image/IndustryTrendGraph-2008-2016.jpg)
 </div>
 
-
-
-## Executive Summary PT 2 {.smaller}
+## Executive Summary PT 2: INSIGHTS {.smaller}
 <div class="centered">
 ![](image/jumpforjoy.jpg)
 </div>
-- Insights:  The Agency 
-  - Total Attrition for The Agency as per the data is 16.1%
-  - As per research, this rate is higher than peer companies at 15.3%
-  - As per the data, there is a significant percentage of employees in the company are disengaged
-  - Three Most Relevant Factors for Attrition from our study include: Income level and the Job level
-    - Benefits (Including Monthly Income, Stock Options, and Salary improvements)
-    - Job Satisfaction
-    - Job Involvement ???
+-	Total Attrition for The Agency as per the data is 16.1%
+-	As per research, this rate is higher than similar companies which is 15.3%
+-	Most Relevant Factors for Attrition from our study include: 
+  -	Income level & Benefits (Stock Options & Training)
+  -	Job Role & Job Engagement (Job Satisfaction & Job Involvement)
+  -	Work-Life Balance (Travel, & Long Hours)
 
-## Executive Summary PT 3 {.smaller}
+## Executive Summary PT 3: RECOMMENDATIONS {.smaller}
 <div class="centered">
 ![](image/improve.jpg)
 </div>
 
-- Recommendations: 
-- Improvements: 
+-	How can The Agency Improve?
+  - Benefits: not everyone can get higher pay but focus on giving Stock Options and Training to employees who do not usually receive them.
+  - Job Features:  not everyone can be promoted, but the company can look at engagement and fix why there may be little involvement or satisfaction.
+  - Work Life Balance: 
+
+## APPENDIX: Life Satisfaction {.smaller}
+
+-	Life Satisfaction is defined by Medium.com as including aspects of career, family, and social.  We do not have all the family and social data, but career is still the highest single indicator at 27%, and can be determined with the DDS Analytics Scale for Career Life Satisfaction™: defined as a combination of Responses as below:
+
+```{r life_sat, echo = FALSE, include = TRUE}
+# Prepare Rmd Table
+vec_ls_names = c("Income", "Stock", "Training", "Job Satisfaction", "Job Involvement", "Work-Life Balance", "Envioronment Satisfaction")
+ves_ls_perc = c(.25, .1, .1, .2, .15, .15, .05)
+
+dfm_ls = data.frame(vec_ls_names, ves_ls_perc)
+colnames(dfm_ls) = c("Response", "Weight")
+
+kable(as_pct(dfm_ls))
+```
+
+## APPENDIX: Life Satisfaction {.smaller}
+
+```{r life_sat_plot, echo = FALSE, include = TRUE}
+# Prepare Life Satisfaction Table from data
+dfm_life = dfm_attrition_data
+
+#income
+dfm_life$IncLevelsNew = dfm_life$IncLevels
+levels(dfm_life$IncLevelsNew) = 1:4
+
+#stock
+dfm_life$StockOptionNew = dfm_life$StockOption
+levels(dfm_life$StockOptionNew) = 1:4
+
+#training
+dfm_life$TrainLastYrNew = dfm_life$TrainLastYr
+levels(dfm_life$TrainLastYrNew) = c(0.57, 1.14, 1.71, 2.29, 2.86, 3.43, 4.00)
+
+#Job Satisfaction
+dfm_life$JobSatisNew = dfm_life$JobSatis
+levels(dfm_life$JobSatisNew) = 1:4   
+
+#Job Involvement
+dfm_life$JobInvolveNew = dfm_life$JobInvolve
+levels(dfm_life$JobInvolveNew) = 1:4
+
+#Work Life Balance
+dfm_life$WorkLifeBalNew = dfm_life$WorkLifeBal
+levels(dfm_life$WorkLifeBalNew) = 1:4
+
+#Environment Satisfaction
+dfm_life$EnvironRateNew = dfm_life$EnvironRate
+levels(dfm_life$EnvironRateNew) = 1:4
+
+dfm_life$LifeSatis = 
+  as.numeric(dfm_life$IncLevelsNew) * .25 +
+  as.numeric(dfm_life$StockOptionNew) * .10 +
+  as.numeric(dfm_life$TrainLastYrNew) * .10 +
+  as.numeric(dfm_life$JobSatisNew) * .20 +
+  as.numeric(dfm_life$JobInvolveNew) * .15 + 
+  as.numeric(dfm_life$WorkLifeBalNew) * .15 +
+  as.numeric(dfm_life$EnvironRateNew) * .05
+
+hist(dfm_life$LifeSatis)
+
+```
 
 ## References & Environment {.smaller}
 
@@ -689,6 +735,8 @@ ggplot(df_plot_wl) +
 - Stick figure presentation free from: http://azart.info/presenter-medi/presenter-medi-stick-figure-holding-check-mark-presentation-clipart-great/
 
 - Attrition Trends Table & Graphs: http://www.compensationforce.com/2017/04/2016-turnover-rates-by-industry.html
+
+- Life Satisfaction Score... How to calculate: https://medium.com/@urmi_majithia/life-satisfaction-score-how-i-calculate-and-measure-47865f93bb13
 
 ```{r environment_notes, echo=FALSE}
 si <- sessionInfo()
