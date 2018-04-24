@@ -23,17 +23,17 @@ Repository: https://github.com/danageis/SMU-MSDS6306-CaseStudy2
 Summary:
 
 Pain Points with Employee Retention and Attrition:
-DDS Analytics (Mock Company) is conducting a review of The Entity’s (Another Mock Company) employee and HR policies to determine factors of affecting employee retention and attrition.
-The study involves a survey of 1460 available employees answering questions pertaining to Role, Salary, Satisfaction, as well as matching data collected as evaluation or HR personnel records attributed to that employee; as well as Analyzing the data.
+DDS Analytics (Mock Company) is conducting a review of The Agency’s (Another Mock Company) employee and HR policies to determine factors affecting employee retention and attrition.
+The study involves a survey of 1470 available employees answering questions pertaining to Role, Salary, Satisfaction, as well as matching data collected from evaluation or HR personnel records attributed to that employee. Recommendations and insights will be provided based on statistical analysis of the data.
 
 Author Matrix:
 
 Author | Responsibility
 ---|---------
-`Dana Geislinger` | Environment & Data Prep
-`Luay Dajani` | r Markdown, Slides & Analysis
-`Adil Siraj`| Codebook & Analysis
-`Garrett Mozey` | Codebook, Analysis & Graphs
+`Dana Geislinger` | Codebook, Data Prep & Analysis
+`Luay Dajani` | Markdown, Presentation & Analysis
+`Adil Siraj`| Analysis
+`Garrett Mozey` | Analysis & Graphs
 
 Resource Files:
 
