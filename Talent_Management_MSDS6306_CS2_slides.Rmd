@@ -158,7 +158,7 @@ names(dfm_gender_freq) = c("Gender", "Frequency")
 names(dfm_educ_freq) = c("Education", "Frequency")
 names(dfm_occup_freq) = c("JobRole", "Frequency")
 
-# Compare attrition rate betwen different groups of monthly income
+# Compare attrition rate between different groups of monthly income
 salary_bins = c("0-5k", "5-10k", "10-15k", "15-20k")
 dfm_attrition_data$IncLevels = cut(dfm_attrition_data$MonIncome,
                                    breaks=c(0, 5000, 10000, 15000, 20000),
@@ -177,13 +177,13 @@ for (level in salary_bins) {
 }
 
 ## Function to quickly find frequencies for unique values and associated attrition
-## Create Funciton to find Frequency vs Attrition to put on a table later
+## Create Function to find Frequency vs Attrition to put on a table later
 fun_findfreq <- function(str_column, dfm_input, counts_not_frequency = FALSE){
   vec_attr_rates = vector()
   dfm_output_freq = data.frame()
   # find total observations
   total = length(dfm_input[dfm_input[,str_column]])
-  # find unique entries // if summary gives quatriles use unique instead of summary
+  # find unique entries // if summary gives quartiles use unique instead of summary
   vec_uniquevalues = summary(dfm_input[,str_column])
 
   # set the frequency of the unique entries in the dataframe,
@@ -345,7 +345,7 @@ kable(as_pct(dfm_educ_freq))
 ## Education Frequency and Attrition
 
 ```{r plot_educ, echo=FALSE, include=TRUE}
-# Education level attrition and frequenct bar chart
+# Education level attrition and frequency bar chart
 library(knitr)
 library(ggplot2)
 df_plot_educ = dfm_educ_freq
@@ -585,7 +585,7 @@ ggplot(df_plot_traininglstyr) +
   geom_bar(aes(x=TrainLastYr, y=pct_of), stat='identity', fill="Red") +
   labs(title="Attrition by Training Opportunities",
        subtitle="Frequency with Attrition Portion Highlighted",
-       x="Trainings Offered in the Past Year",
+       x="Training Offered in the Past Year",
        y="Percentage"
        )
 ```
@@ -661,9 +661,9 @@ ggplot(df_plot_wl) +
 ![](image/improve.jpg)
 </div>
 
--	How can The Agency Improve?
+- How can The Agency Improve?
   - Benefits: not everyone can get higher pay but focus on giving Stock Options and Training to employees who do not usually receive them.
-  - Job Features:  not everyone can be promoted, but the company can look at engagement and fix why there may be little involvement or satisfaction.
+  - Job Features: not everyone can be promoted, but the company can look at engagement and fix why there may be little involvement or satisfaction.
   - Work Life Balance: Though sometimes working long hours or traveling a lot are necessary, helping employees strike a balance through work at home or remote when possible can help increase morale.
 
 ## APPENDIX: Life Satisfaction {.smaller}
@@ -672,7 +672,7 @@ ggplot(df_plot_wl) +
 
 ```{r life_sat, echo = FALSE, include = TRUE}
 # Prepare Rmd Table
-vec_ls_names = c("Income", "Stock", "Training", "Job Satisfaction", "Job Involvement", "Work-Life Balance", "Envioronment Satisfaction")
+vec_ls_names = c("Income", "Stock", "Training", "Job Satisfaction", "Job Involvement", "Work-Life Balance", "Environment Satisfaction")
 ves_ls_perc = c(.25, .1, .1, .2, .15, .15, .05)
 
 dfm_ls = data.frame(vec_ls_names, ves_ls_perc)
