@@ -664,7 +664,7 @@ ggplot(data=dfm_attrition_data, aes(fill=HourlyRate,x=Attrition,y=yval)) +
 
 ```
 
-## Monthly Income over Time
+## Monthly Income over Time with Attrition
 ```{r monthly_income_over_time, echo=FALSE, include=TRUE}
 library(knitr)
 library(ggplot2)
@@ -694,6 +694,38 @@ scatter_with_labels = basic_plot +
        y = "Age", 
        title= "Monthly Income vs. Age",
        subtitle= "Case of Attrition")
+
+# Add regression line smoothing to aid in seeing patterns
+scatter_smoothed = scatter_with_labels + 
+  stat_smooth(method="loess"  # line smoothing call
+              ,na.rm = TRUE) # silently remove missing values without warning 
+
+# Display the scatter plot
+scatter_smoothed 
+
+```
+
+## Monthly Income over Time with no Attrition
+```{r monthly_income_over_time_no_attrition, echo=FALSE, include=TRUE}
+library(knitr)
+library(ggplot2)
+
+# Assigning required variables for scatter plot
+xval=dfm_no_attrition$MonthlyIncome
+yval=dfm_no_attrition$YearsAtCompany
+Gender=dfm_no_attrition$Gender
+
+# Setting up basic plot 
+basic_plot = ggplot(dfm_no_attrition,
+                    aes(xval,yval,color=Gender)) # Construct aesthetic mappings for two data columns
+
+# Add scatter points to basic plot along with axis labels and a plot title  
+scatter_with_labels = basic_plot + 
+  geom_point(na.rm = TRUE) +  # scatter points added 
+  labs(x = "Monthly Income", 
+       y = "Age", 
+       title= "Monthly Income vs. Age",
+       subtitle= "Case of no Attrition")
 
 # Add regression line smoothing to aid in seeing patterns
 scatter_smoothed = scatter_with_labels + 
