@@ -114,6 +114,8 @@ dfm_attrition_data$JobSatis = factor(dfm_attrition_data$JobSatis, labels=general
 # Though Job Level does not have equivalent string factors, the numbers will be converted to factors
 dfm_attrition_data$JobLevel = as.factor(dfm_attrition_data$JobLevel)
 
+dfm_attrition_data$TrainLastYr = as.factor(dfm_attrition_data$TrainLastYr)
+
 # 1/2 (Low/Medium) factors omitted, as nobody in data set ranked their performance lower than 3
 dfm_attrition_data$Performance = factor(dfm_attrition_data$Performance,
                                         labels=c("Excellent", "Outstanding")
@@ -236,6 +238,12 @@ dfm_stockoption_freq = fun_findfreq("StockOption", dfm_attrition_data)
 dfm_jobinvolve_freq = data.frame()
 dfm_jobinvolve_freq = fun_findfreq("JobInvolve", dfm_attrition_data)
 
+## Get & Set Attrition for Training Time last Year
+dfm_traininglstyr_freq = data.frame()
+dfm_traininglstyr_freq = fun_findfreq("TrainLastYr", dfm_attrition_data)
+
+
+
 ## Get Management Position counts
 dfm_managerlevel_counts = data.frame()
 dfm_managerlevel_counts = fun_findfreq("JobRole", dfm_attrition_data, counts_not_frequency = TRUE)
@@ -341,6 +349,16 @@ library(knitr)
 kable(dfm_jobinvolve_freq)
 ```
 
+## Training Times Last Year
+
+```{r table_training, echo = FALSE, include = TRUE}
+# Prepare Rmd Table
+library(knitr)
+kable(dfm_traininglstyr_freq)
+```
+
+
+
 ## Management Position Counts and Attrition
 
 ```{r table_mgmt, echo = FALSE, include = TRUE}
@@ -368,9 +386,9 @@ barplot(attrit_by_sal_pct,
 ![](image/jumpforjoy.jpg)
 </div>
 - Insights:  The Agency 
-  - Total Attrition within the time period ???
-  - The Agnecy's versus the market/industry ??? Is it higher or lower than peer companies ???
-  - Three Most Relevant Factors for Attrition from our study include: ???
+  - Total Attrition within the time period 16.1%
+  - The Agnecy's versus the market/industry 16.1 Is it higher or lower than peer companies 15.3%
+  - Three Most Relevant Factors for Attrition from our study include: Income level and the Job level
     - Benefits (Incuding Monthly Income, Stock Options, and Salary improvements)
     - Job Roles
     - Job Satisfation
