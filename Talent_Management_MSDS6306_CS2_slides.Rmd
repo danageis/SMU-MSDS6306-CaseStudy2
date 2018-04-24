@@ -249,6 +249,7 @@ dfm_managerlevel_counts = data.frame()
 dfm_managerlevel_counts = fun_findfreq("JobRole", dfm_attrition_data, counts_not_frequency = TRUE)
 dfm_managerlevel_countsdisplay = dfm_managerlevel_counts[dfm_managerlevel_counts$JobRole == 
                                                     c("Manager", "Manufacturing Director", "Research Director"),]
+row.names(dfm_managerlevel_countsdisplay) = c("1", "2", "3")
 
 # Display tables as percentages for printing
 #   df: dataframe to display as percentage
@@ -396,23 +397,35 @@ barplot(attrit_by_sal_pct,
 
 ## Executive Summary PT 1 {.smaller}
 <div class="centered">
+![](image/IndustryTrends-2016.jpg)
+</div>
+
+
+<div class="centered">
+![](image/IndustryTrendGraph-2008-2016.jpg)
+</div>
+
+
+
+## Executive Summary PT 2 {.smaller}
+<div class="centered">
 ![](image/jumpforjoy.jpg)
 </div>
 - Insights:  The Agency 
-  - Total Attrition within the time period 16.1%
-  - The Agnecy's versus the market/industry 16.1 Is it higher or lower than peer companies 15.3%
+  - Total Attrition for The Agency as per the data is 16.1%
+  - As per research, this rate is higher than peer companies at 15.3%
+  - As per the data, there is a significant percentage of employees in the company are disengaged
   - Three Most Relevant Factors for Attrition from our study include: Income level and the Job level
     - Benefits (Incuding Monthly Income, Stock Options, and Salary improvements)
-    - Job Roles
     - Job Satisfation
     - Job Involvement ???
 
-## Executive Summary PT 2 {.smaller}
+## Executive Summary PT 3 {.smaller}
 <div class="centered">
 ![](image/improve.jpg)
 </div>
 
-- Recommendations:
+- Recommendations: 
 - Improvements: 
 
 ## References & Environment {.smaller}
@@ -420,6 +433,8 @@ barplot(attrit_by_sal_pct,
 - Logo adapted from: "Fondo moderno de moleculas" at Vector Gratis  https://image.freepik.com/vector-gratis/fondo-moderno-de-moleculas_1035-8990.jpg
 
 - Stick figure presentation free from: http://azart.info/presenter-medi/presenter-medi-stick-figure-holding-check-mark-presentation-clipart-great/
+
+- Attrition Trends Table & Graphs: http://www.compensationforce.com/2017/04/2016-turnover-rates-by-industry.html
 
 ```{r environment_notes, echo=FALSE}
 si <- sessionInfo()
