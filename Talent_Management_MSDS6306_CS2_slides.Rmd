@@ -42,7 +42,7 @@ Employee Attrition and Retention Agenda:
 </div>
 
 - Study the attrition rate for all the employees of The Agency.
-- Examine all potential factors contributing to attrition rate from data pertaining to all departments at The Agency.
+- Examine all potential factors contributing to attrition rate from data pertaining to all roles at The Agency.
 - DDS Analytics will identify the most influential factors contributing to attrition and provide suggestions to improve employee retention at The Agency.
 
 ## Points about the Data
@@ -62,7 +62,7 @@ Employee Attrition and Retention Agenda:
 Following is the Methodology we used to Analyze and determine the factors which are contributing to the Attrition:
 
 - **Start:** We identified the type of data provided, what different type each variable is, what is the total size, some basics about number of columns/rows, and most importantly what is the question of interest.
-- **Plan:** Before coding anything, we planned the flow of our analysis. We began coding by defining global variables to define so that those can be used without having to do separate coding for each ask.
+- **Plan:** Before coding anything, we planned the flow of our analysis. We began coding by defining global variables to define so that those can be used without having to do separate coding for each task.
 - **Deploy:** In this phase we made sure we follow our Plan, without having to do ad-hoc coding and clearly state the answers to the questions for our preliminary analysis.
 - **Analyze/Optimize:** After preliminary analysis, we performed detailed analysis and attempted to identify the factors most significantly contributing to attrition based on statistic analysis and practical consideration.
 
