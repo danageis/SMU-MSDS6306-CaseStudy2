@@ -43,8 +43,15 @@
 * **YearsSprvsr:** (Originally YearsWithCurrManager) The number of years the employee has been working under their current manager.
 
 **general_ratings:** (character vector) List of strings typically used as levels for categorical variables in the dataset.
+
 **dfm_nstats:** (data.frame) Subset of dfm_attrition_data that will be used for descriptive statistics table.
+
 **dfm_desc_stats:** (data.frame) Descriptive statistics (minimum, 1st quartile, median, mean, 3rd quartile, and maximum) for dfm_nstats.
+
 **dfm_factors:** (data.frame) Subset of dfm_attrition_data with categorical variables of interest.
+
 **list_freq:** (list) Frequency of levels in dfm_factors.
-**dfm_&ast;_freq:** (data.frame) Frequency of variable in the dataset, and the percentage of attrition within each variable level as percentage values.
+
+**dfm_&ast;_freq:** (data.frame, '&ast;' is variable name) Frequency of variable in the dataset, and the percentage of attrition within each variable level as percentage values.
+
+**dfm_&ast;_plot:** (data.frame, '&ast;' is variable name) Frequency and attrition data formatted for plotting as a ggplot2 descending, layered bar chart.
