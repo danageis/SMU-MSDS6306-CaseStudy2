@@ -664,7 +664,7 @@ ggplot(df_plot_wl) +
 -	How can The Agency Improve?
   - Benefits: not everyone can get higher pay but focus on giving Stock Options and Training to employees who do not usually receive them.
   - Job Features:  not everyone can be promoted, but the company can look at engagement and fix why there may be little involvement or satisfaction.
-  - Work Life Balance: 
+  - Work Life Balance: Though sometimes working long hours or traveling a lot are necessary, helping employees strike a balance through work at home or remote when possible can help increase morale.
 
 ## APPENDIX: Life Satisfaction {.smaller}
 
@@ -683,7 +683,7 @@ kable(as_pct(dfm_ls))
 
 ## APPENDIX: Life Satisfaction {.smaller}
 
-```{r life_sat_plot, echo = FALSE, include = TRUE}
+```{r life_sat_plot, echo = FALSE, include = TRUE, fig.height=3.5 }
 # Prepare Life Satisfaction Table from data
 dfm_life = dfm_attrition_data
 
@@ -724,18 +724,54 @@ dfm_life$LifeSatis =
   as.numeric(dfm_life$WorkLifeBalNew) * .15 +
   as.numeric(dfm_life$EnvironRateNew) * .05
 
-hist(dfm_life$LifeSatis)
+
+#hist(dfm_life$LifeSatis, main = "Distribution of Life Satisfaction Score in The Agency")
+
+ls_bins = c("1-2", "2-3", "3-4")
+dfm_life$LifeSatis2 = cut(dfm_life$LifeSatis,
+                                   breaks=c(1, 2, 3, 4),
+                                   labels=ls_bins
+                                   )
+
+## Get & Set Attrition for Life Satisfaction
+dfm_lifesatis_freq = data.frame()
+dfm_lifesatis_freq = fun_findfreq("LifeSatis2", dfm_life)
+
+#table
+kable(as_pct(dfm_lifesatis_freq), col.names = c("Life Satisfaction Rank", "Frequency", "Attrition"))
+
+#barplot
+df_plot_lifestatisstyr = dfm_lifesatis_freq
+df_plot_lifestatisstyr$pct_of = df_plot_lifestatisstyr[, 2] * df_plot_lifestatisstyr[, 3] * 100
+df_plot_lifestatisstyr[, 2] = df_plot_lifestatisstyr[, 2] * 100
+df_plot_lifestatisstyr[, 1] = factor(df_plot_lifestatisstyr[, 1],
+                           levels=df_plot_lifestatisstyr[, 1][order(df_plot_lifestatisstyr[, 2],
+                                                          decreasing=TRUE
+                                                          )
+                                                    ]
+                           )
+
+df_plot_lifestatisstyr$order = c(1, 2, 3)
+
+#reorder(df_plot_lifestatisstyr$LifeSatis2, df_plot_lifestatisstyr$order)
+
+ggplot(df_plot_lifestatisstyr) +
+  geom_bar(aes(x=reorder(LifeSatis2, order), y=Frequency), stat='identity', fill="Blue") +
+  geom_bar(aes(x=reorder(LifeSatis2, order), y=pct_of), stat='identity', fill="Red") +
+  labs(
+       y="Percentage",
+       x="Categories"
+       )
 
 ```
 
 ## References & Environment {.smaller}
 
+Thank You!
+
 - Logo adapted from: "Fondo moderno de moleculas" at Vector Gratis  https://image.freepik.com/vector-gratis/fondo-moderno-de-moleculas_1035-8990.jpg
-
 - Stick figure presentation free from: http://azart.info/presenter-medi/presenter-medi-stick-figure-holding-check-mark-presentation-clipart-great/
-
 - Attrition Trends Table & Graphs: http://www.compensationforce.com/2017/04/2016-turnover-rates-by-industry.html
-
 - Life Satisfaction Score... How to calculate: https://medium.com/@urmi_majithia/life-satisfaction-score-how-i-calculate-and-measure-47865f93bb13
 
 ```{r environment_notes, echo=FALSE}
